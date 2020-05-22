@@ -12,7 +12,7 @@ namespace УспеваемостьСтудентов
 {
     public partial class fmAbout : Form
     {
-        public fmAbout(User user)
+        public fmAbout(OnlineUser user)
         {
             InitializeComponent();
             tbName.Text = user.Name;

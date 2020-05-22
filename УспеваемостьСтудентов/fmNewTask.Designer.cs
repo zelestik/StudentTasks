@@ -43,94 +43,111 @@
             // laSubject
             // 
             this.laSubject.AutoSize = true;
-            this.laSubject.Location = new System.Drawing.Point(13, 10);
+            this.laSubject.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.laSubject.Location = new System.Drawing.Point(10, 9);
             this.laSubject.Name = "laSubject";
-            this.laSubject.Size = new System.Drawing.Size(66, 17);
+            this.laSubject.Size = new System.Drawing.Size(95, 25);
             this.laSubject.TabIndex = 0;
             this.laSubject.Text = "Предмет";
             // 
             // laDescription
             // 
             this.laDescription.AutoSize = true;
-            this.laDescription.Location = new System.Drawing.Point(13, 46);
+            this.laDescription.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laDescription.Location = new System.Drawing.Point(10, 46);
             this.laDescription.Name = "laDescription";
-            this.laDescription.Size = new System.Drawing.Size(74, 17);
+            this.laDescription.Size = new System.Drawing.Size(111, 25);
             this.laDescription.TabIndex = 1;
             this.laDescription.Text = "Описание";
             // 
             // laType
             // 
             this.laType.AutoSize = true;
-            this.laType.Location = new System.Drawing.Point(13, 85);
+            this.laType.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laType.Location = new System.Drawing.Point(10, 134);
             this.laType.Name = "laType";
-            this.laType.Size = new System.Drawing.Size(84, 17);
+            this.laType.Size = new System.Drawing.Size(119, 25);
             this.laType.TabIndex = 2;
             this.laType.Text = "Тип задачи";
             // 
             // laExpDate
             // 
             this.laExpDate.AutoSize = true;
-            this.laExpDate.Location = new System.Drawing.Point(12, 121);
+            this.laExpDate.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laExpDate.Location = new System.Drawing.Point(12, 170);
             this.laExpDate.Name = "laExpDate";
-            this.laExpDate.Size = new System.Drawing.Size(101, 17);
+            this.laExpDate.Size = new System.Drawing.Size(146, 25);
             this.laExpDate.TabIndex = 3;
             this.laExpDate.Text = "Выполнить до";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(129, 10);
+            this.textBox1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(185, 9);
+            this.textBox1.MaxLength = 32;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(151, 22);
+            this.textBox1.Size = new System.Drawing.Size(185, 27);
             this.textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(129, 46);
+            this.textBox2.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(185, 46);
+            this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(151, 22);
+            this.textBox2.Size = new System.Drawing.Size(185, 81);
             this.textBox2.TabIndex = 5;
             // 
             // comboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(129, 85);
+            this.comboBox1.BackColor = System.Drawing.Color.White;
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.Location = new System.Drawing.Point(185, 133);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(151, 24);
+            this.comboBox1.Size = new System.Drawing.Size(185, 28);
             this.comboBox1.TabIndex = 8;
             // 
             // buAdd
             // 
+            this.buAdd.BackColor = System.Drawing.Color.Indigo;
             this.buAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buAdd.Location = new System.Drawing.Point(0, 240);
+            this.buAdd.FlatAppearance.BorderSize = 0;
+            this.buAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buAdd.Font = new System.Drawing.Font("Gilroy ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buAdd.Location = new System.Drawing.Point(0, 290);
             this.buAdd.Name = "buAdd";
-            this.buAdd.Size = new System.Drawing.Size(292, 23);
+            this.buAdd.Size = new System.Drawing.Size(382, 63);
             this.buAdd.TabIndex = 9;
             this.buAdd.Text = "Добавить";
-            this.buAdd.UseVisualStyleBackColor = true;
+            this.buAdd.UseVisualStyleBackColor = false;
             this.buAdd.Click += new System.EventHandler(this.buAdd_Click);
             // 
             // cbGroup
             // 
             this.cbGroup.AutoSize = true;
-            this.cbGroup.Location = new System.Drawing.Point(129, 150);
+            this.cbGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbGroup.Location = new System.Drawing.Point(17, 209);
             this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(151, 21);
+            this.cbGroup.Size = new System.Drawing.Size(206, 29);
             this.cbGroup.TabIndex = 10;
             this.cbGroup.Text = "Групповая задача";
             this.cbGroup.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(129, 122);
+            this.dateTimePicker1.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker1.Location = new System.Drawing.Point(185, 170);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(151, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(185, 28);
             this.dateTimePicker1.TabIndex = 11;
             // 
             // fmNewTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 263);
+            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cbGroup);
             this.Controls.Add(this.buAdd);
@@ -141,10 +158,13 @@
             this.Controls.Add(this.laType);
             this.Controls.Add(this.laDescription);
             this.Controls.Add(this.laSubject);
-            this.MaximumSize = new System.Drawing.Size(310, 310);
-            this.MinimumSize = new System.Drawing.Size(310, 310);
+            this.Font = new System.Drawing.Font("Gilroy ExtraBold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.Color.White;
+            this.MaximumSize = new System.Drawing.Size(400, 400);
+            this.MinimumSize = new System.Drawing.Size(400, 400);
             this.Name = "fmNewTask";
-            this.Text = "fmNewTask";
+            this.Opacity = 0.95D;
+            this.Text = "Новая задача";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -48,7 +48,7 @@ namespace УспеваемостьСтудентов
             this.Type = type;
         }
     }
-    public class Task_creator
+    public class TaskCreator
     {
         public List<Task> GetTasks(string Username, string Password)
         {
@@ -69,6 +69,12 @@ namespace УспеваемостьСтудентов
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
             }     
+        }
+        public List<Task> GetTasksOffline()
+        {
+            var db = new Local_db();
+            return db.load_tasks();
+
         }
     }
 }

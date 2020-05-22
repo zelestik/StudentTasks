@@ -18,9 +18,22 @@ namespace УспеваемостьСтудентов
         public User User { get; private set; }
         public fmNewTask(User user)
         {
-            this.User = user;
+            User = user;
             InitializeComponent();
-            if (User.Role != 1) //Если не староста - убираем checkBox групповой задачи
+            comboBox1.Items.Add("Другое");
+            comboBox1.Items.Add("Лабораторная работа");
+            comboBox1.Items.Add("Домашняя работа");
+            comboBox1.SelectedIndex = 1;
+            if (User is OnlineUser)
+            {
+                OnlineUser u = (OnlineUser)User;
+                if (u.Role != 1) //Если не староста - убираем checkBox групповой задачи
+                {
+                    cbGroup.Checked = false;
+                    cbGroup.Hide();
+                }
+            }
+            else
             {
                 cbGroup.Checked = false;
                 cbGroup.Hide();
@@ -29,20 +42,27 @@ namespace УспеваемостьСтудентов
 
         private void buAdd_Click(object sender, EventArgs e)
         {
-            var task = new Task(textBox2.Text, 0, textBox1.Text, 0, 0);
-            string output = JsonConvert.SerializeObject(task);
-            var con = new Connection();
-            var res = con.post($"post_tasks/{User.Username}/{User.Password}", output);
-            if (res == "0")
+            if (User is OnlineUser)
             {
-                MessageBox.Show("Успешно");
-                this.Close();
-            }
-            else
+                OnlineUser u = (OnlineUser)User;
+                long num_date = dateTimePicker1.Value.Year * 10000 + dateTimePicker1.Value.Month * 100 + dateTimePicker1.Value.Day;
+                var task = new Task(textBox2.Text, num_date, textBox1.Text, 0, comboBox1.SelectedIndex);
+                string output = JsonConvert.SerializeObject(task);
+                var con = new Connection();
+                var res = con.post($"post_tasks/{u.Username}/{u.Password}", output);
+                if (res == "0")
+                {
+                    MessageBox.Show("Успешно");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Возникла ошибка при передаче данных " + res);
+                }
+            }else
             {
-                MessageBox.Show("Возникла ошибка при передаче данных " + res);
+                //Добавляем задачу в локальную БД
             }
-
         }
     }
 }
