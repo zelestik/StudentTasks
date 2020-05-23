@@ -60,7 +60,7 @@ namespace УспеваемостьСтудентов
                 string type;
                 foreach (var task in User.Tasks)
                 {
-                    switch(task.Type)
+                    switch(task.Type) // TODO реализовать получение типов задач с сервера
                     {
                         case 1:
                             type = "Лаб. работа";

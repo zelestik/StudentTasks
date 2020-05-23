@@ -50,7 +50,7 @@ namespace УспеваемостьСтудентов
         public List<Task> GetTasks(string Username, string Password)
         {
             var con = new Connection();
-            var answer = con.get("tasks/" + Username + "/" + Password);
+            var answer = con.GetJSON("tasks/" + Username + "/" + Password);
             if (answer is null)
             {
                 answer = "-2"; //Ошибка подключения к серверу

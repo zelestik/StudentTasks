@@ -15,7 +15,7 @@ namespace УспеваемостьСтудентов
         // Все методы класса возвращают строку с ответом на запрос или null - если возникла ошибка при подключении
         public int Status { get; private set; } // Поле для отладки, статус -2 - проблемы при подключении, -1 - ошибка доступа, 1 - запрос был выполнен успешно
 
-        public string get(string adr) // adr - параметр запроса
+        public string GetJSON(string adr) // adr - параметр запроса
         {
             try
             {
@@ -41,7 +41,7 @@ namespace УспеваемостьСтудентов
 
             }
         }
-        public string post(string adr, string str) //adr - параметр запроса, str - JSON тело запроса
+        public string PostJSON(string adr, string str) //adr - параметр запроса, str - JSON тело запроса
         {
             try
             {

@@ -49,7 +49,7 @@ namespace УспеваемостьСтудентов
                 var task = new Task(textBox2.Text, num_date, textBox1.Text, 0, comboBox1.SelectedIndex);
                 string output = JsonConvert.SerializeObject(task);
                 var con = new Connection();
-                var res = con.post($"post_tasks/{u.Username}/{u.Password}", output);
+                var res = con.PostJSON($"post_tasks/{u.Username}/{u.Password}", output);
                 if (res == "0")
                 {
                     MessageBox.Show("Успешно");

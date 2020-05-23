@@ -1,6 +1,4 @@
-﻿
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
@@ -8,18 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Reflection.Emit;
 using System.Runtime.ConstrainedExecution;
-//using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 
 namespace УспеваемостьСтудентов
 {
     public abstract class User
     {
-        // При работе оффлайн будет создаваться экземпляр класса OfflineUser, а при работе онлайн - Online_User (наследующий User)
-        // Это связано с тем, что в оффлайн режиме из локальной БД будет запрашиваться только список задач
+        // При работе оффлайн будет создаваться экземпляр класса OfflineUser, а при работе онлайн - OnlineUser
         public List<Task> Tasks { get;  set; }
     }
     public class OfflineUser : User
@@ -40,11 +37,11 @@ namespace УспеваемостьСтудентов
         public string Name { get; private set; }
         public OnlineUser(string username, string password)
         {
-            this.Username = username;
-            this.Password = password;
-            this.Group = "";
-            this.Role = -1;
-            this.Name = "";
+            Username = username;
+            Password = password;
+            Group = "";
+            Role = -1;
+            Name = "";
         }
 
         public int LoginUser()
@@ -54,7 +51,7 @@ namespace УспеваемостьСтудентов
             var con = new Connection(); // Создаём экземпляр класса для выполнения подключения
             try
             {
-                connection_answer = con.get("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
+                connection_answer = con.GetJSON("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
             }   
             catch (Exception e)
             {
@@ -92,9 +89,9 @@ namespace УспеваемостьСтудентов
         public string Name { get; private set; }
         public AnswerUser(string group, int role, string name)
         {
-            this.Group = group;
-            this.Role = role;
-            this.Name = name;
+            Group = group;
+            Role = role;
+            Name = name;
         }
     }
 }
