@@ -16,21 +16,9 @@ using System.Windows.Forms;
 
 namespace УспеваемостьСтудентов
 {
-    public class AnswerUser // Вспомогательный класс для десериализации JSON
+    public abstract class User
     {
-        public string Group { get; private set; }
-        public int Role { get; private set; }
-        public string Name { get; private set; }
-        public AnswerUser(string group, int role, string name)
-        {
-            this.Group = group;
-            this.Role = role;
-            this.Name = name;
-        }
-    }
-    public class User
-    {
-        // При работе оффлайн будет создаваться экземпляр класса OffUser, а при работе онлайн - Online_User (наследующий User)
+        // При работе оффлайн будет создаваться экземпляр класса OfflineUser, а при работе онлайн - Online_User (наследующий User)
         // Это связано с тем, что в оффлайн режиме из локальной БД будет запрашиваться только список задач
         public List<Task> Tasks { get;  set; }
     }
@@ -61,12 +49,12 @@ namespace УспеваемостьСтудентов
 
         public string LoginUser()
         {
-            var OS = Environment.OSVersion;
+            var OS = Environment.OSVersion; // Получаем данные о системе
             string answer = "";
-            var con = new Connection();
+            var con = new Connection(); // Создаём экземпляр класса для выполнения подключения
             try
             {
-                answer = con.get("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получен JSON с данными о пользователе
+                answer = con.get("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
                 if (answer is null)
                 {
                     answer = "-2"; //Ошибка подключения к серверу
@@ -94,13 +82,25 @@ namespace УспеваемостьСтудентов
                 {
                     MessageBox.Show(e.Message);
                 }
-                return "1";
+                return "1"; // Успешно
             }
         }
         public void RefreshTasks()
         {
             var tc = new TaskCreator();
             Tasks = tc.GetTasks(this.Username, this.Password);
+        }
+    }
+    public class AnswerUser // Вспомогательный класс для десериализации JSON
+    {
+        public string Group { get; private set; }
+        public int Role { get; private set; }
+        public string Name { get; private set; }
+        public AnswerUser(string group, int role, string name)
+        {
+            this.Group = group;
+            this.Role = role;
+            this.Name = name;
         }
     }
 }
