@@ -42,26 +42,25 @@ namespace УспеваемостьСтудентов
 
         private void buAdd_Click(object sender, EventArgs e)
         {
-            if (User is OnlineUser)
+            int num_date = dateTimePicker1.Value.Year * 10000 + dateTimePicker1.Value.Month * 100 + dateTimePicker1.Value.Day;
+            var task = new Task(textBox2.Text, num_date, textBox1.Text, 0, comboBox1.SelectedIndex, "Создано", comboBox1.SelectedItem.ToString());
+            string res = "-3";
+            if (User is OnlineUser u)
             {
-                OnlineUser u = (OnlineUser)User;
-                int num_date = dateTimePicker1.Value.Year * 10000 + dateTimePicker1.Value.Month * 100 + dateTimePicker1.Value.Day;
-                var task = new Task(textBox2.Text, num_date, textBox1.Text, 0, comboBox1.SelectedIndex, "Создано", comboBox1.SelectedItem.ToString());
-                string output = JsonConvert.SerializeObject(task);
-                var con = new Connection();
-                var res = con.PostJSON($"post_tasks/{u.Username}/{u.Password}", output);
-                if (res == "0")
-                {
-                    MessageBox.Show("Успешно");
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Возникла ошибка при передаче данных " + res);
-                }
-            }else
+                res = task.SendToServer(u.Username, u.Password);
+            }
+            else
             {
-                //Добавляем задачу в локальную БД
+                res = task.SendToLocal();
+            }
+            if (res == "0")
+            {
+                MessageBox.Show("Успешно");
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Возникла ошибка при сохранении данных " + res);
             }
         }
     }

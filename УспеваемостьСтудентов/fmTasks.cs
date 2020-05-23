@@ -47,17 +47,18 @@ namespace УспеваемостьСтудентов
             listView1.Clear();
             if (User.Tasks != null && User.Tasks.Count != 0)
             {
-                int col_num = 5;
+                int col_num = 6;
                 listView1.Columns.Add("Название", listView1.Width/col_num);
                 listView1.Columns.Add("Описание", listView1.Width/col_num);
-                listView1.Columns.Add("Тип", listView1.Width /col_num);
-                if (User is OnlineUser u && u.Role == 2)
-                    listView1.Columns.Add("Группа", listView1.Width/col_num);
-                else{
-                    listView1.Columns.Add("Осталось времени", listView1.Width / col_num);
-                }
                 listView1.Columns.Add("Сделать до", listView1.Width / col_num);
-                string type;
+                listView1.Columns.Add("Тип", listView1.Width / col_num);
+                if (User is OnlineUser u && u.Role == 2)
+                    listView1.Columns.Add("Группа", listView1.Width / col_num);
+                else
+                {
+                    listView1.Columns.Add("Статус", listView1.Width / col_num);
+                    listView1.Columns.Add("Осталось дней", listView1.Width / col_num);
+                }
                 foreach (var task in User.Tasks)
                 {
                     int year = Convert.ToInt32(task.ExpirationDate / 10000);
@@ -67,6 +68,7 @@ namespace УспеваемостьСтудентов
                     int daysLeft = (expDate - DateTime.Now).Days;
                     ListViewItem item = new ListViewItem(task.Name, Convert.ToInt32(task.Id));
                     item.SubItems.Add(task.Description);
+                    item.SubItems.Add(expDate.ToString("dd.MM.yyyy"));
                     item.SubItems.Add(task.Type);
                     if (User is OnlineUser u_on1 && u_on1.Role == 2) // Для админа добавляем поле Группа
                     {
@@ -74,13 +76,12 @@ namespace УспеваемостьСтудентов
                     }
                     else //Для остальных пользователей - поле с количеством оставшихся дней
                     {
+                        item.SubItems.Add(task.Status);
                         if (daysLeft >= 0)
                             item.SubItems.Add(daysLeft.ToString());
                         else
                             item.SubItems.Add("Время истекло");
                     }
-                        
-                    item.SubItems.Add(expDate.ToString("dd.MM.yyyy"));
                     item.Tag = task;
                     listView1.Items.Add(item);
                 }
@@ -104,7 +105,7 @@ namespace УспеваемостьСтудентов
             {
                 if (listView1.SelectedItems[0].Tag.ToString() != "NOTASK")
                 {
-                    Form fm = new fmSelectedItem(listView1.SelectedItems[0]);
+                    Form fm = new fmSelectedItem(listView1.SelectedItems[0], User);
                     fm.Show();
                 }
             }

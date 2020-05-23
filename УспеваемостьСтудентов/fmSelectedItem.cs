@@ -12,22 +12,34 @@ namespace УспеваемостьСтудентов
 {
     public partial class fmSelectedItem : Form
     {
-        public fmSelectedItem(ListViewItem item)
+        public User User { get; private set; }
+        public fmSelectedItem(ListViewItem item, User user)
         {
+            User = user;
             InitializeComponent();
-            try
+            cbStatus.Items.Add("Создано");
+            cbStatus.Items.Add("В работе");
+            cbStatus.Items.Add("В работе");
+            if (item.Tag is Task task)
             {
-                var task = (Task)item.Tag;
-                
+                cbStatus.SelectedIndex = Convert.ToInt32(task.IdStatus);
                 laName.Text = task.Name + ". " + task.Type;
                 tbDescription.Text = item.SubItems[1].Text;
-                //dateTimePicker1.Value = (date)item.SubItems[3].Text;
+                int year = Convert.ToInt32(task.ExpirationDate / 10000);
+                int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
+                int day = Convert.ToInt32(task.ExpirationDate % 100);
+                DateTime expDate = new DateTime(year, month, day);
+                dateTimePicker1.Value = (expDate);
             }
-            catch
-            {
-
-            }
+            else
+                Close(); // Форма будет закрыта, если в тэге элемента нет задачи
         }
 
+
+
+        private void buSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

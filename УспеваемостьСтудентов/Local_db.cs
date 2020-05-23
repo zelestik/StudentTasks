@@ -14,6 +14,8 @@ namespace УспеваемостьСтудентов
     {
         private string dbFileName = @"localDB.sqlite3";
 
+        public string Status { get; private set; }
+
         public Local_db()
         {
             check_db();
@@ -40,7 +42,6 @@ namespace УспеваемостьСтудентов
                 CREATE TABLE IF NOT EXISTS tasks
                 (
                     id integer not null constraint tasks_pk primary key, 
-                    username text not null,
                     name text not null, 
                     description text, 
                     expiration_date integer not null, 
@@ -65,16 +66,24 @@ namespace УспеваемостьСтудентов
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
                 SQLiteCommand Command = new SQLiteCommand(sql, con);
-                con.Open();
-                using (var reader = Command.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    con.Open();
+                    using (var reader = Command.ExecuteReader())
                     {
-                        Task task = new Task((string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"]);
-                        tasks.Add(task);
+                        while (reader.Read())
+                        {
+                            Task task = new Task((string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"]);
+                            tasks.Add(task);
+                        }
                     }
+                    con.Close();
                 }
-                con.Close();
+                catch(Exception e)
+                {
+                    Status = e.Message;
+                    return null;
+                }
             }
             return tasks;
         }
@@ -85,14 +94,43 @@ namespace УспеваемостьСтудентов
             foreach (var task in user.Tasks)
             {
                 //TODO Заменить подстановку данных на sqlite (защита от sql инъекций)
-                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'username') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0, '{user.Username}'); ";
+                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
             }
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
-                SQLiteCommand Command = new SQLiteCommand(sql, con);
-                con.Open();
-                Command.ExecuteNonQuery();
-                con.Close();
+                try
+                {
+                    SQLiteCommand Command = new SQLiteCommand(sql, con);
+                    con.Open();
+                    Command.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch(Exception e)
+                {
+                    Status = e.Message;
+                    return -2;
+                }
+            }
+            return 0;
+        }
+
+        public int AddTask(Task task)
+        {
+            var sql = $"INSERT INTO 'tasks' ('name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') VALUES ('{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
+            using (var con = new SQLiteConnection("Data source =" + dbFileName))
+            {
+                try
+                {
+                    SQLiteCommand Command = new SQLiteCommand(sql, con);
+                    con.Open();
+                    Command.ExecuteNonQuery();
+                    con.Close();
+                }
+                catch (Exception e)
+                {
+                    Status = e.Message;
+                    return -2;
+                }
             }
             return 0;
         }

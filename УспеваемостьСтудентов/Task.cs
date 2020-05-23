@@ -52,6 +52,19 @@ namespace УспеваемостьСтудентов
             this.Status = status;
             this.Type = type;
         }
+
+        public string SendToServer(string username, string password)
+        {
+            string output = JsonConvert.SerializeObject(this);
+            var con = new Connection();
+            return con.PostJSON($"post_tasks/{username}/{password}", output); ;
+        }
+        public string SendToLocal()
+        {
+            var db = new Local_db();
+            var res = db.AddTask(this);
+            return res.ToString();
+        }
     }
     public class TaskCreator
     {
