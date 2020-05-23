@@ -79,7 +79,7 @@ namespace УспеваемостьСтудентов
         public void RefreshTasks()
         {
             var tc = new TaskCreator();
-            Tasks = tc.GetTasks(this.Username, this.Password);
+            Tasks = tc.GetTasksOnline(this.Username, this.Password);
         }
     }
     public class AnswerUser // Вспомогательный класс для десериализации JSON

@@ -18,8 +18,8 @@ namespace УспеваемостьСтудентов
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("exp_date")]
-        public int ExpDate { get; set; }
+        [JsonProperty("expiration_date")]
+        public long ExpirationDate { get; set; }
 
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -27,51 +27,69 @@ namespace УспеваемостьСтудентов
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("id_status")]
+        public long IdStatus { get; set; }
+
         [JsonProperty("status")]
-        public int Status { get; set; }
+        public string Status { get; set; }
+
+        [JsonProperty("id_type")]
+        public long IdType { get; set; }
 
         [JsonProperty("type")]
-        public int Type { get; set; }
+        public string Type { get; set; }
 
         [JsonProperty("group")]
         public string Group { get; set; }
 
-        public Task(string description, int expDate, string name, int status, int type)
+        public Task(string description, long expDate, string name, long id_status, long id_type, string status, string type)
         {
             this.Description = description;
-            this.ExpDate = expDate;
+            this.ExpirationDate = expDate;
             this.Name = name;
+            this.IdStatus = id_status;
+            this.IdType = id_type;
             this.Status = status;
             this.Type = type;
         }
     }
     public class TaskCreator
     {
-        public List<Task> GetTasks(string Username, string Password)
+        // Если класс возвращает null - причина записана в Status, -2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
+        public int Status { get; private set; }
+
+        public List<Task> GetTasksOnline(string Username, string Password)
         {
             var con = new Connection();
-            var answer = con.GetJSON("tasks/" + Username + "/" + Password);
-            if (answer is null)
+            string connection_answer = "";
+            try
             {
-                answer = "-2"; //Ошибка подключения к серверу
+                connection_answer = con.GetJSON("tasks/" + Username + "/" + Password); // Получаем ответ
             }
-            JsonReader jr = new JsonTextReader(new StringReader(answer));
-            JsonSerializer js = new JsonSerializer();
-            if (answer == "0") //Если задач нет - сервер вернёт 0, клиент создает пустой список задач
-                return new List<Task>();
-            else if (answer == "-1" || answer == "-2") //Если логин или пароль неверны или случилась ошибка при подключении - вернётся null, в дальнейшем будет обрабатываться как ошибка подключения
-                return null;
-            else
+            catch(Exception e)
             {
+                MessageBox.Show(e.ToString());
+            }
+            if (!(connection_answer is null) && con.Status == 1)
+            {
+                JsonReader jr = new JsonTextReader(new StringReader(connection_answer));
+                JsonSerializer js = new JsonSerializer();
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
-            }     
+            }
+            else
+            {
+                Status = con.Status;
+                if (Status == 0)
+                    return new List<Task>();
+                else
+                    return null;
+            }
         }
         public List<Task> GetTasksOffline()
         {
             var db = new Local_db();
             return db.load_tasks();
-
         }
     }
 }

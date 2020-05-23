@@ -43,18 +43,24 @@ namespace УспеваемостьСтудентов
                     username text not null,
                     name text not null, 
                     description text, 
-                    exp_date integer not null, 
+                    expiration_date integer not null, 
                     id_status integer default 0 not null references statuses, 
                     id_type integer references task_types, 
                     is_changed integer default 0 not null
-                );";
+                );
+                INSERT INTO task_types(id,name) SELECT 0, 'Другое' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 0 AND name = 'Другое');
+                INSERT INTO task_types(id,name) SELECT 1, 'Домашнее задание' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 1 AND name = 'Домашнее задание');
+                INSERT INTO task_types(id,name) SELECT 2, 'Лабораторная работа' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 2 AND name = 'Лабораторная работа');
+                INSERT INTO statuses(id,name) SELECT 0, 'Создано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 0 AND name = 'Создано');
+                INSERT INTO statuses(id,name) SELECT 1, 'В работе' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 1 AND name = 'В работе');
+                INSERT INTO statuses(id,name) SELECT 2, 'Сделано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 2 AND name = 'Сделано');";
                 SQLiteCommand command = new SQLiteCommand(sql, sqlite);
                 command.ExecuteNonQuery();
             }
         }
         public List<Task> load_tasks()
         {
-            var sql = "SELECT * FROM tasks";
+            var sql = "SELECT description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
@@ -64,7 +70,7 @@ namespace УспеваемостьСтудентов
                 {
                     while (reader.Read())
                     {
-                        var task = new Task((string)reader["description"], (int)reader["exp_date"], (string)reader["name"], (int)reader["id_status"], (int)reader["id_type"]);
+                        Task task = new Task((string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"]);
                         tasks.Add(task);
                     }
                 }
@@ -79,7 +85,7 @@ namespace УспеваемостьСтудентов
             foreach (var task in user.Tasks)
             {
                 //TODO Заменить подстановку данных на sqlite (защита от sql инъекций)
-                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'exp_date', 'id_status', 'id_type', 'is_changed', 'username') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpDate}, {task.Status}, {task.Type}, 0, '{user.Username}'); ";
+                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'username') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0, '{user.Username}'); ";
             }
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {

@@ -60,26 +60,14 @@ namespace УспеваемостьСтудентов
                 string type;
                 foreach (var task in User.Tasks)
                 {
-                    switch(task.Type) // TODO реализовать получение типов задач с сервера
-                    {
-                        case 1:
-                            type = "Лаб. работа";
-                            break;
-                        case 2:
-                            type = "Домашнее задание";
-                            break;
-                        default:
-                            type = "-";
-                            break;
-                    }
-                    int year = task.ExpDate / 10000;
-                    int month = task.ExpDate / 100 - year * 100;
-                    int day = task.ExpDate % 100;
+                    int year = Convert.ToInt32(task.ExpirationDate / 10000);
+                    int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
+                    int day = Convert.ToInt32(task.ExpirationDate % 100);
                     DateTime expDate = new DateTime(year, month, day);
                     int daysLeft = (expDate - DateTime.Now).Days;
                     ListViewItem item = new ListViewItem(task.Name, Convert.ToInt32(task.Id));
                     item.SubItems.Add(task.Description);
-                    item.SubItems.Add(type);
+                    item.SubItems.Add(task.Type);
                     if (User is OnlineUser u_on1 && u_on1.Role == 2) // Для админа добавляем поле Группа
                     {
                         item.SubItems.Add(task.Group);
@@ -93,7 +81,7 @@ namespace УспеваемостьСтудентов
                     }
                         
                     item.SubItems.Add(expDate.ToString("dd.MM.yyyy"));
-                    item.Tag = task.Id;
+                    item.Tag = task;
                     listView1.Items.Add(item);
                 }
             }
