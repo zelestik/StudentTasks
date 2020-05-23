@@ -60,11 +60,7 @@ namespace УспеваемостьСтудентов
             {
                 MessageBox.Show(e.ToString());
             }
-            if (connection_answer is null)
-            {
-                return con.Status; //Ошибка подключения к серверу
-            }
-            else
+            if (!(connection_answer is null))
             {
                 try
                 {
@@ -80,8 +76,8 @@ namespace УспеваемостьСтудентов
                 {
                     MessageBox.Show(e.Message);
                 }
-                return con.Status; // Успешно
             }
+            return con.Status; // Возвращаем код ответа
         }
         public void RefreshTasks()
         {
