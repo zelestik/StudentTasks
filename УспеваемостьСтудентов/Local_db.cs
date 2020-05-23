@@ -64,7 +64,7 @@ namespace УспеваемостьСтудентов
                 {
                     while (reader.Read())
                     {
-                        var task = new Task((string)reader["description"], (long)reader["exp_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"]);
+                        var task = new Task((string)reader["description"], (int)reader["exp_date"], (string)reader["name"], (int)reader["id_status"], (int)reader["id_type"]);
                         tasks.Add(task);
                     }
                 }

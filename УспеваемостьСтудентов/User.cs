@@ -47,31 +47,29 @@ namespace УспеваемостьСтудентов
             this.Name = "";
         }
 
-        public string LoginUser()
+        public int LoginUser()
         {
             var OS = Environment.OSVersion; // Получаем данные о системе
-            string answer = "";
+            string connection_answer = "";
             var con = new Connection(); // Создаём экземпляр класса для выполнения подключения
             try
             {
-                answer = con.get("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
-                if (answer is null)
-                {
-                    answer = "-2"; //Ошибка подключения к серверу
-                }
+                connection_answer = con.get("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
             }   
-            catch (NullReferenceException e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
             }
-            JsonReader jr = new JsonTextReader(new StringReader(answer));
-            JsonSerializer js = new JsonSerializer();
-            if (answer == "-1" || answer == "-2") //Если введён неверный логин и пароль (-1) или возникли проблемы с подключением к серверу
-                return answer;
+            if (connection_answer is null)
+            {
+                return con.Status; //Ошибка подключения к серверу
+            }
             else
             {
                 try
                 {
+                    JsonReader jr = new JsonTextReader(new StringReader(connection_answer));
+                    JsonSerializer js = new JsonSerializer();
                     AnswerUser answer_user = js.Deserialize<AnswerUser>(jr);
                     this.Group = answer_user.Group;
                     this.Role = answer_user.Role;
@@ -82,7 +80,7 @@ namespace УспеваемостьСтудентов
                 {
                     MessageBox.Show(e.Message);
                 }
-                return "1"; // Успешно
+                return con.Status; // Успешно
             }
         }
         public void RefreshTasks()

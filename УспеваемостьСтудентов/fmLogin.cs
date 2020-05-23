@@ -28,16 +28,16 @@ namespace УспеваемостьСтудентов
                 if (tbUser.Text != "" && tbPass.Text != "")
                 {
                     var user = new OnlineUser(tbUser.Text.ToLower(new CultureInfo("en-US", false)), tbPass.Text);
-                    string a = user.LoginUser();
-                    if (a == "1") //Успешный вход
+                    var a = user.LoginUser();
+                    if (a == 1) //Успешный вход
                     {
                         Form fmTasks = new fmTasks(user);
                         this.Hide();
                         fmTasks.Show();
                     }
-                    else if (a == "-1")
+                    else if (a == -1)
                         MessageBox.Show("Неверный логин или пароль");
-                    else if (a == "-2")
+                    else if (a == -2)
                         MessageBox.Show("Возникла ошибка сервера, проверьте подключение к интернету и доступность сервера");
                 }
                 else

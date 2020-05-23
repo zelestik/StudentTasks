@@ -45,7 +45,7 @@ namespace УспеваемостьСтудентов
             if (User is OnlineUser)
             {
                 OnlineUser u = (OnlineUser)User;
-                long num_date = dateTimePicker1.Value.Year * 10000 + dateTimePicker1.Value.Month * 100 + dateTimePicker1.Value.Day;
+                int num_date = dateTimePicker1.Value.Year * 10000 + dateTimePicker1.Value.Month * 100 + dateTimePicker1.Value.Day;
                 var task = new Task(textBox2.Text, num_date, textBox1.Text, 0, comboBox1.SelectedIndex);
                 string output = JsonConvert.SerializeObject(task);
                 var con = new Connection();

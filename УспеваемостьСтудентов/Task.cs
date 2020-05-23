@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace УспеваемостьСтудентов
 {
-    using System;
-    using System.Collections.Generic;
-
-    using System.Globalization;
-    using System.IO;
-    using System.Net;
-    using System.Windows.Forms;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
     public class Task
     {
@@ -22,24 +19,24 @@ namespace УспеваемостьСтудентов
         public string Description { get; set; }
 
         [JsonProperty("exp_date")]
-        public long ExpDate { get; set; }
+        public int ExpDate { get; set; }
 
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("status")]
-        public long Status { get; set; }
+        public int Status { get; set; }
 
         [JsonProperty("type")]
-        public long Type { get; set; }
+        public int Type { get; set; }
 
         [JsonProperty("group")]
         public string Group { get; set; }
 
-        public Task(string description, long expDate, string name, long status, long type)
+        public Task(string description, int expDate, string name, int status, int type)
         {
             this.Description = description;
             this.ExpDate = expDate;

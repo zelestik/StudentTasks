@@ -13,7 +13,7 @@ namespace УспеваемостьСтудентов
     class Connection
     {
         // Все методы класса возвращают строку с ответом на запрос или null - если возникла ошибка при подключении
-        public int status { get; private set; } // Поле для отладки, статус -2 - проблемы при подключении, 1 - запрос был выполнен успешно
+        public int Status { get; private set; } // Поле для отладки, статус -2 - проблемы при подключении, -1 - ошибка доступа, 1 - запрос был выполнен успешно
 
         public string get(string adr) // adr - параметр запроса
         {
@@ -22,14 +22,23 @@ namespace УспеваемостьСтудентов
                 WebRequest request = WebRequest.Create("http://localhost:5000/" + adr); //  http://ip2020.std-913.ist.mospolytech.ru/
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream receiveStream = response.GetResponseStream();
-                status = 1;
-                return (new StreamReader(response.GetResponseStream()).ReadToEnd());
+                string answer = new StreamReader(response.GetResponseStream()).ReadToEnd();
+                if (int.TryParse(answer, out var i))
+                {
+                    Status = i;
+                    return null;
+                }
+                else
+                {
+                    Status = 1;
+                    return answer;
+                }
             }
             catch
             {
-                status = -2;
+                Status = -2;
                 return null;
-                
+
             }
         }
         public string post(string adr, string str) //adr - параметр запроса, str - JSON тело запроса
@@ -49,18 +58,18 @@ namespace УспеваемостьСтудентов
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 if (((HttpWebResponse)response).StatusDescription == "OK")
                 {
-                    status = 1;
+                    Status = 1;
                     return (responseString);
                 }
                 else
                 {
-                    status = -2;
+                    Status = -2;
                     return null;
                 }
             }
             catch
             {
-                status = -2;
+                Status = -2;
                 return null;
 
             }

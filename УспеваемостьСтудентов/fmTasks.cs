@@ -26,18 +26,15 @@ namespace УспеваемостьСтудентов
                     buNT.Hide();
                 }
                 laWelcome.Text += u.Name;
-                listView1.FullRowSelect = true;
-                listView1.MouseClick += new MouseEventHandler(ListView1_Click);
-                Refresh_Tasks();
             }
             else
             {
                 buAbout.Hide();
                 laWelcome.Text = "Оффлайн режим";
-                listView1.FullRowSelect = true;
-                listView1.MouseClick += new MouseEventHandler(ListView1_Click);
-                Refresh_Tasks();
             }
+            listView1.FullRowSelect = true;
+            listView1.MouseClick += new MouseEventHandler(ListView1_Click);
+            Refresh_Tasks();
 
         }
 
@@ -75,19 +72,19 @@ namespace УспеваемостьСтудентов
                             type = "-";
                             break;
                     }
-                    int year = Convert.ToInt32(task.ExpDate / 10000);
-                    int month = Convert.ToInt32(task.ExpDate / 100 - year * 100);
-                    int day = Convert.ToInt32(task.ExpDate % 100);
+                    int year = task.ExpDate / 10000;
+                    int month = task.ExpDate / 100 - year * 100;
+                    int day = task.ExpDate % 100;
                     DateTime expDate = new DateTime(year, month, day);
                     int daysLeft = (expDate - DateTime.Now).Days;
                     ListViewItem item = new ListViewItem(task.Name, Convert.ToInt32(task.Id));
                     item.SubItems.Add(task.Description);
                     item.SubItems.Add(type);
-                    if (User is OnlineUser u_on1 && u_on1.Role == 2)
+                    if (User is OnlineUser u_on1 && u_on1.Role == 2) // Для админа добавляем поле Группа
                     {
                         item.SubItems.Add(task.Group);
                     }
-                    else
+                    else //Для остальных пользователей - поле с количеством оставшихся дней
                     {
                         if (daysLeft >= 0)
                             item.SubItems.Add(daysLeft.ToString());
@@ -147,14 +144,6 @@ namespace УспеваемостьСтудентов
                 Form fm = new fmAbout(u);
                 fm.Show();
             }
-            //var msg = User.Name + "\n" + User.Group;
-            //if (User.Role == 0)
-            //    msg += "\nСтудент";
-            //else if (User.Role == 1)
-            //    msg += "\nСтароста";
-            //else if (User.Role == 2)
-            //    msg += "\nАдминистратор";
-            //MessageBox.Show(msg);
         }
 
         private void buNT_Click(object sender, EventArgs e)
