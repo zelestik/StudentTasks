@@ -18,9 +18,8 @@ namespace УспеваемостьСтудентов
         {
             InitializeComponent();
             User = user;
-            if (User is OnlineUser)
+            if (User is OnlineUser u)
             {
-                OnlineUser u = (OnlineUser)User;
                 if (u.Role == 2) //Если Админ - отключаем кнопку добавления задачи
                 {
                     buNT.Hide();

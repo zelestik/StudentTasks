@@ -39,7 +39,8 @@ namespace УспеваемостьСтудентов
 
         private void buSave_Click(object sender, EventArgs e)
         {
-
+            // TODO
+            // Обработка сохранения изменений
         }
     }
 }
