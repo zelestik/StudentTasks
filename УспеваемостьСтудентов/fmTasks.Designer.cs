@@ -39,6 +39,7 @@
             this.buRefresh = new System.Windows.Forms.Button();
             this.buAbout = new System.Windows.Forms.Button();
             this.buNT = new System.Windows.Forms.Button();
+            this.buGroup = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,13 +50,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listView1.BackColor = System.Drawing.Color.DarkOrange;
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.ForeColor = System.Drawing.Color.White;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 52);
+            this.listView1.Location = new System.Drawing.Point(18, 53);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1152, 495);
+            this.listView1.Size = new System.Drawing.Size(1150, 490);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -114,7 +115,7 @@
             this.buRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buRefresh.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buRefresh.ForeColor = System.Drawing.Color.White;
-            this.buRefresh.Location = new System.Drawing.Point(1048, 12);
+            this.buRefresh.Location = new System.Drawing.Point(1051, 12);
             this.buRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buRefresh.Name = "buRefresh";
             this.buRefresh.Size = new System.Drawing.Size(117, 34);
@@ -131,7 +132,7 @@
             this.buAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buAbout.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buAbout.ForeColor = System.Drawing.Color.White;
-            this.buAbout.Location = new System.Drawing.Point(931, 12);
+            this.buAbout.Location = new System.Drawing.Point(934, 12);
             this.buAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buAbout.Name = "buAbout";
             this.buAbout.Size = new System.Drawing.Size(112, 34);
@@ -148,7 +149,7 @@
             this.buNT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buNT.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buNT.ForeColor = System.Drawing.Color.White;
-            this.buNT.Location = new System.Drawing.Point(757, 12);
+            this.buNT.Location = new System.Drawing.Point(760, 12);
             this.buNT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buNT.Name = "buNT";
             this.buNT.Size = new System.Drawing.Size(168, 34);
@@ -157,12 +158,30 @@
             this.buNT.UseVisualStyleBackColor = false;
             this.buNT.Click += new System.EventHandler(this.buNT_Click);
             // 
+            // buGroup
+            // 
+            this.buGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buGroup.BackColor = System.Drawing.Color.DarkOrange;
+            this.buGroup.FlatAppearance.BorderSize = 0;
+            this.buGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buGroup.ForeColor = System.Drawing.Color.White;
+            this.buGroup.Location = new System.Drawing.Point(586, 11);
+            this.buGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buGroup.Name = "buGroup";
+            this.buGroup.Size = new System.Drawing.Size(168, 34);
+            this.buGroup.TabIndex = 5;
+            this.buGroup.Text = "Задачи группы";
+            this.buGroup.UseVisualStyleBackColor = false;
+            this.buGroup.Click += new System.EventHandler(this.buGroup_Click);
+            // 
             // fmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Indigo;
-            this.ClientSize = new System.Drawing.Size(1179, 567);
+            this.ClientSize = new System.Drawing.Size(1182, 567);
+            this.Controls.Add(this.buGroup);
             this.Controls.Add(this.buNT);
             this.Controls.Add(this.buAbout);
             this.Controls.Add(this.buRefresh);
@@ -170,7 +189,7 @@
             this.Controls.Add(this.listView1);
             this.ForeColor = System.Drawing.Color.White;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1194, 605);
+            this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "fmTasks";
             this.Opacity = 0.95D;
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -194,5 +213,6 @@
         private System.Windows.Forms.ToolStripMenuItem созданоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вРаботеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сделаноToolStripMenuItem;
+        private System.Windows.Forms.Button buGroup;
     }
 }

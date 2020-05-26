@@ -14,21 +14,23 @@ namespace УспеваемостьСтудентов
     {
         private string dbFileName = @"localDB.sqlite3";
 
-        public string Status { get; private set; }
+        public string ExceptionMessages { get; private set; } // Поле с сообщениями об ошибках для отладки
 
         public Local_db()
         {
             check_db();
         }
 
-        private void check_db()
+        private void check_db() // Проверка на существование БД, при отсутствии - создаем
         {
             if (!File.Exists(dbFileName))
                 SQLiteConnection.CreateFile(dbFileName);
             using (var sqlite = new SQLiteConnection("Data source =" + dbFileName))
             {
-                sqlite.Open();
-                string sql = @"CREATE TABLE IF NOT EXISTS statuses
+                try
+                {
+                    sqlite.Open();
+                    string sql = @"CREATE TABLE IF NOT EXISTS statuses
                     (id integer not null constraint statuses_pk primary key autoincrement, name text not null);
 
                 create unique index IF NOT EXISTS statuses_name_uindex on statuses(name);
@@ -55,11 +57,22 @@ namespace УспеваемостьСтудентов
                 INSERT INTO statuses(id,name) SELECT 0, 'Создано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 0 AND name = 'Создано');
                 INSERT INTO statuses(id,name) SELECT 1, 'В работе' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 1 AND name = 'В работе');
                 INSERT INTO statuses(id,name) SELECT 2, 'Сделано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 2 AND name = 'Сделано');";
-                SQLiteCommand command = new SQLiteCommand(sql, sqlite);
-                command.ExecuteNonQuery();
+                    SQLiteCommand command = new SQLiteCommand(sql, sqlite);
+                    command.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    ExceptionMessages = e.Message;
+                }
             }
         }
-        public List<Task> load_tasks()
+
+        public void UpdateTask(Task task)
+        {
+            // Здесь будет обновление задачи на клиенте
+        }
+
+        public List<Task> load_tasks() // Загрузка задач из БД
         {
             var sql = "SELECT description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
@@ -81,14 +94,14 @@ namespace УспеваемостьСтудентов
                 }
                 catch(Exception e)
                 {
-                    Status = e.Message;
+                    ExceptionMessages = e.Message;
                     return null;
                 }
             }
             return tasks;
         }
 
-        public int saveTasks(OnlineUser user)
+        public int saveTasks(OnlineUser user) // Сохранение задач
         {
             var sql = "DELETE FROM tasks; ";
             foreach (var task in user.Tasks)
@@ -107,14 +120,14 @@ namespace УспеваемостьСтудентов
                 }
                 catch(Exception e)
                 {
-                    Status = e.Message;
+                    ExceptionMessages = e.Message;
                     return -2;
                 }
             }
             return 0;
         }
 
-        public int AddTask(Task task)
+        public int AddTask(Task task) // Добавление новой задачи
         {
             var sql = $"INSERT INTO 'tasks' ('name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') VALUES ('{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
@@ -128,7 +141,7 @@ namespace УспеваемостьСтудентов
                 }
                 catch (Exception e)
                 {
-                    Status = e.Message;
+                    ExceptionMessages = e.Message;
                     return -2;
                 }
             }

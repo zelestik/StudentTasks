@@ -16,36 +16,36 @@ namespace УспеваемостьСтудентов
     public class Task
     {
         [JsonProperty("description")]
-        public string Description { get; set; }
+        public string Description { get; set; } // Описание задачи
 
         [JsonProperty("expiration_date")]
-        public long ExpirationDate { get; set; }
+        public long ExpirationDate { get; set; } // Дата "сделать до" числом в формате YYYYMMDD
 
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public int Id { get; set; } // id задачи на сервере/в локальной БД
 
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } // Название задачи
 
         [JsonProperty("id_status")]
-        public long IdStatus { get; set; }
+        public long IdStatus { get; set; } // ID статуса
 
         [JsonProperty("status")]
-        public string Status { get; set; }
+        public string Status { get; set; } // Название статуса
 
         [JsonProperty("id_type")]
-        public long IdType { get; set; }
+        public long IdType { get; set; } // ID типа задачи
 
         [JsonProperty("type")]
-        public string Type { get; set; }
+        public string Type { get; set; } // Название типа задачи
 
         [JsonProperty("group")]
-        public string Group { get; set; }
+        public string Group { get; set; } // Название группы (ID группы не хранится у клиента)
 
-        public Task(string description, long expDate, string name, long id_status, long id_type, string status, string type)
+        public Task(string description, long expirationDate, string name, long id_status, long id_type, string status, string type) // Конструктор задачи
         {
             this.Description = description;
-            this.ExpirationDate = expDate;
+            this.ExpirationDate = expirationDate;
             this.Name = name;
             this.IdStatus = id_status;
             this.IdType = id_type;
@@ -53,56 +53,35 @@ namespace УспеваемостьСтудентов
             this.Type = type;
         }
 
-        public string SendToServer(string username, string password)
+        public string SendToServer(string username, string password, bool is_group) // Метод для отправки задачи на сервер
+        {
+            string output = JsonConvert.SerializeObject(this); // Получаем JSON объекта
+            var con = new Connection();
+            if (is_group) // Если задача групповая то отправляем на post_group_tasks
+                return con.PostJSON($"post_group_tasks/{username}/{password}", output);
+            else
+                return con.PostJSON($"post_tasks/{username}/{password}", output);
+        }
+
+        internal string UpdateOnLocal() // На данный момент не реализованный метод возвращает "", в будущем будет использоваться для обновления информации о задаче в клиентской БД
+        {
+            string res = "";
+            var db = new Local_db();
+            //var res = db.UpdateTask(this);
+            return res.ToString();
+        }
+
+        public string UpdateOnServer(string username, string password) // Метод для обновления задачи на сервере
         {
             string output = JsonConvert.SerializeObject(this);
             var con = new Connection();
-            return con.PostJSON($"post_tasks/{username}/{password}", output); ;
+            return con.PostJSON($"status_change/{username}/{password}", output);
         }
-        public string SendToLocal()
+        public string SendToLocal() // Метод для отправки задачи в локальную БД
         {
             var db = new Local_db();
             var res = db.AddTask(this);
             return res.ToString();
-        }
-    }
-    public class TaskCreator
-    {
-        // Если класс возвращает null - причина записана в Status, -2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
-        public int Status { get; private set; }
-
-        public List<Task> GetTasksOnline(string Username, string Password)
-        {
-            var con = new Connection();
-            string connection_answer = "";
-            try
-            {
-                connection_answer = con.GetJSON("tasks/" + Username + "/" + Password); // Получаем ответ
-            }
-            catch(Exception e)
-            {
-                MessageBox.Show(e.ToString());
-            }
-            if (!(connection_answer is null) && con.Status == 1)
-            {
-                JsonReader jr = new JsonTextReader(new StringReader(connection_answer));
-                JsonSerializer js = new JsonSerializer();
-                var tasks = js.Deserialize<List<Task>>(jr);
-                return tasks;
-            }
-            else
-            {
-                Status = con.Status;
-                if (Status == 0)
-                    return new List<Task>();
-                else
-                    return null;
-            }
-        }
-        public List<Task> GetTasksOffline()
-        {
-            var db = new Local_db();
-            return db.load_tasks();
         }
     }
 }

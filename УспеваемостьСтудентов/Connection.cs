@@ -19,7 +19,7 @@ namespace УспеваемостьСтудентов
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://localhost:5000/" + adr); //  http://ip2020.std-913.ist.mospolytech.ru/
+                WebRequest request = WebRequest.Create("http://ip2020.std-982.ist.mospolytech.ru/" + adr); // http://localhost:5000/  
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream receiveStream = response.GetResponseStream();
                 string answer = new StreamReader(response.GetResponseStream()).ReadToEnd();
@@ -45,7 +45,7 @@ namespace УспеваемостьСтудентов
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://localhost:5000/" + adr); //  http://ip2020.std-913.ist.mospolytech.ru/
+                WebRequest request = WebRequest.Create("http://ip2020.std-982.ist.mospolytech.ru/" + adr); // http://localhost:5000/ 
                 request.Method = "POST";
                 string postData = str;
                 byte[] byteArray = Encoding.UTF8.GetBytes(postData);
@@ -67,8 +67,9 @@ namespace УспеваемостьСтудентов
                     return null;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                MessageBox.Show(e.Message);
                 Status = -2;
                 return null;
 

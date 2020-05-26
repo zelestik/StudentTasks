@@ -52,11 +52,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbDescription.BackColor = System.Drawing.Color.Indigo;
+            this.tbDescription.Enabled = false;
             this.tbDescription.ForeColor = System.Drawing.Color.White;
             this.tbDescription.Location = new System.Drawing.Point(12, 55);
             this.tbDescription.Multiline = true;
             this.tbDescription.Name = "tbDescription";
-            this.tbDescription.Size = new System.Drawing.Size(558, 364);
+            this.tbDescription.Size = new System.Drawing.Size(958, 364);
             this.tbDescription.TabIndex = 1;
             // 
             // dateTimePicker1
@@ -67,18 +68,20 @@
             this.dateTimePicker1.Font = new System.Drawing.Font("Gill Sans Nova Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(12, 425);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(562, 34);
+            this.dateTimePicker1.Size = new System.Drawing.Size(962, 34);
             this.dateTimePicker1.TabIndex = 2;
             // 
             // cbStatus
             // 
             this.cbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Location = new System.Drawing.Point(12, 465);
             this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(562, 31);
+            this.cbStatus.Size = new System.Drawing.Size(962, 31);
             this.cbStatus.TabIndex = 3;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.cbStatus_SelectedIndexChanged);
             // 
             // buSave
             // 
@@ -89,7 +92,7 @@
             this.buSave.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buSave.Location = new System.Drawing.Point(0, 502);
             this.buSave.Name = "buSave";
-            this.buSave.Size = new System.Drawing.Size(582, 51);
+            this.buSave.Size = new System.Drawing.Size(982, 51);
             this.buSave.TabIndex = 4;
             this.buSave.Text = "Сохранить";
             this.buSave.UseVisualStyleBackColor = false;
@@ -100,7 +103,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkOrange;
-            this.ClientSize = new System.Drawing.Size(582, 553);
+            this.ClientSize = new System.Drawing.Size(982, 553);
             this.Controls.Add(this.buSave);
             this.Controls.Add(this.cbStatus);
             this.Controls.Add(this.dateTimePicker1);

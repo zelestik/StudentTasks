@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
@@ -21,13 +22,14 @@ namespace УспеваемостьСтудентов
             if (User is OnlineUser u)
             {
                 if (u.Role == 2) //Если Админ - отключаем кнопку добавления задачи
-                {
                     buNT.Hide();
-                }
+                if (u.Group == null)
+                    buGroup.Hide();
                 laWelcome.Text += u.Name;
             }
             else
             {
+                buGroup.Hide();
                 buAbout.Hide();
                 laWelcome.Text = "Оффлайн режим";
             }
@@ -114,8 +116,13 @@ namespace УспеваемостьСтудентов
         {
             if (User is OnlineUser u && u.Role != 2) //Если онлайн пользователь и не админ
             {
-                var db = new Local_db();
-                db.saveTasks(u);
+                var res = MessageBox.Show("Сохранить задачи на компьютер? \nВы сможете продолжить работу оффлайн", "Подтвердите действие", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                {
+                    var db = new Local_db();
+                    db.saveTasks(u);
+                    File.WriteAllText(@"User", User.Username);
+                }
             }
             Application.Exit();
         }
@@ -138,6 +145,15 @@ namespace УспеваемостьСтудентов
         {
             Form fm = new fmNewTask(User);
             fm.Show();
+        }
+
+        private void buGroup_Click(object sender, EventArgs e)
+        {
+            if (User is OnlineUser u && u.Group != null)
+            {
+                Form fm = new fmGroupTasks(u);
+                fm.Show();
+            }
         }
     }
 }

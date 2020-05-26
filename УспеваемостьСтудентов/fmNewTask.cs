@@ -24,9 +24,8 @@ namespace УспеваемостьСтудентов
             comboBox1.Items.Add("Лабораторная работа");
             comboBox1.Items.Add("Домашняя работа");
             comboBox1.SelectedIndex = 1;
-            if (User is OnlineUser)
+            if (User is OnlineUser u)
             {
-                OnlineUser u = (OnlineUser)User;
                 if (u.Role != 1) //Если не староста - убираем checkBox групповой задачи
                 {
                     cbGroup.Checked = false;
@@ -47,7 +46,7 @@ namespace УспеваемостьСтудентов
             string res = "-3";
             if (User is OnlineUser u)
             {
-                res = task.SendToServer(u.Username, u.Password);
+                res = task.SendToServer(u.Username, u.Password, cbGroup.Checked);
             }
             else
             {

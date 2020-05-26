@@ -45,10 +45,24 @@ namespace УспеваемостьСтудентов
             }
             else
             {
-                User user = new OfflineUser();
-                Form fmTasks = new fmTasks(user);
-                this.Hide();
-                fmTasks.Show();
+                try
+                {
+                    string username = File.ReadAllText(@"User");
+                    
+                    var res = MessageBox.Show("Найдены задачи пользователя " + username + "\nПродолжить?", "Подтвердите действие", MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                    {
+                        var user = new OfflineUser(username);
+                        Form fmTasks = new fmTasks(user);
+                        this.Hide();
+                        fmTasks.Show();
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Файл сохранения не найден");
+                }
+
             }
         }
 
