@@ -28,5 +28,10 @@ namespace УспеваемостьСтудентов
                 laRole.Text += "Администратор";
         }
 
+        private void btnLoginHistory_Click(object sender, EventArgs e)
+        {
+            var fm = new fmLoginHistory();
+            fm.Show();
+        }
     }
 }

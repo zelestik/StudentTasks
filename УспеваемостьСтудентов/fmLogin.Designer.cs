@@ -75,12 +75,12 @@
             // 
             // buLogin
             // 
-            this.buLogin.BackColor = System.Drawing.Color.Indigo;
+            this.buLogin.BackColor = System.Drawing.Color.White;
             this.buLogin.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buLogin.FlatAppearance.BorderSize = 0;
             this.buLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buLogin.Font = new System.Drawing.Font("Gilroy ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buLogin.ForeColor = System.Drawing.Color.White;
+            this.buLogin.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buLogin.Location = new System.Drawing.Point(0, 174);
             this.buLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buLogin.Name = "buLogin";
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(252, 223);
             this.Controls.Add(this.cbOffline);
             this.Controls.Add(this.label2);

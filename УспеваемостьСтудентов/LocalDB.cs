@@ -11,18 +11,18 @@ using System.Data.SQLite;
 namespace УспеваемостьСтудентов
 {
 
-    class Local_db
+    class LocalDB
     {
         private string dbFileName = @"localDB.sqlite3";
 
         public string ExceptionMessages { get; private set; } // Поле с сообщениями об ошибках для отладки
 
-        public Local_db()
+        public LocalDB()
         {
-            check_db();
+            CheckDB();
         }
 
-        private void check_db() // Проверка на существование БД, при отсутствии - создаем
+        private void CheckDB() // Проверка на существование БД, при отсутствии - создаем
         {
             if (!File.Exists(dbFileName))
                 SQLiteConnection.CreateFile(dbFileName);
@@ -73,7 +73,7 @@ namespace УспеваемостьСтудентов
             // Здесь будет обновление задачи на клиенте
         }
 
-        public List<Task> load_tasks() // Загрузка задач из БД
+        public List<Task> LoadTasks() // Загрузка задач из БД
         {
             var sql = "SELECT description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
@@ -102,7 +102,7 @@ namespace УспеваемостьСтудентов
             return tasks;
         }
 
-        public int saveTasks(OnlineUser user) // Сохранение задач
+        public int SaveTasks(OnlineUser user) // Сохранение задач
         {
             var sql = "DELETE FROM tasks; ";
             foreach (var task in user.Tasks)

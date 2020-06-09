@@ -39,9 +39,12 @@
             this.buAbout = new System.Windows.Forms.Button();
             this.buNT = new System.Windows.Forms.Button();
             this.buGroup = new System.Windows.Forms.Button();
-            this.cboGroupByStatus = new System.Windows.Forms.ComboBox();
+            this.cboFilterByStatus = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.cboGroupByType = new System.Windows.Forms.ComboBox();
+            this.cboFilterByType = new System.Windows.Forms.ComboBox();
+            this.btnToWork = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,11 +97,11 @@
             // buRefresh
             // 
             this.buRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buRefresh.BackColor = System.Drawing.Color.DarkOrange;
+            this.buRefresh.BackColor = System.Drawing.Color.White;
             this.buRefresh.FlatAppearance.BorderSize = 0;
             this.buRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buRefresh.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buRefresh.ForeColor = System.Drawing.Color.White;
+            this.buRefresh.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buRefresh.Location = new System.Drawing.Point(1051, 46);
             this.buRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buRefresh.Name = "buRefresh";
@@ -111,11 +114,11 @@
             // buAbout
             // 
             this.buAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buAbout.BackColor = System.Drawing.Color.DarkOrange;
+            this.buAbout.BackColor = System.Drawing.Color.White;
             this.buAbout.FlatAppearance.BorderSize = 0;
             this.buAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buAbout.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buAbout.ForeColor = System.Drawing.Color.White;
+            this.buAbout.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buAbout.Location = new System.Drawing.Point(1051, 8);
             this.buAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buAbout.Name = "buAbout";
@@ -128,11 +131,11 @@
             // buNT
             // 
             this.buNT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buNT.BackColor = System.Drawing.Color.DarkOrange;
+            this.buNT.BackColor = System.Drawing.Color.White;
             this.buNT.FlatAppearance.BorderSize = 0;
             this.buNT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buNT.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buNT.ForeColor = System.Drawing.Color.White;
+            this.buNT.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buNT.Location = new System.Drawing.Point(877, 8);
             this.buNT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buNT.Name = "buNT";
@@ -145,11 +148,11 @@
             // buGroup
             // 
             this.buGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buGroup.BackColor = System.Drawing.Color.DarkOrange;
+            this.buGroup.BackColor = System.Drawing.Color.White;
             this.buGroup.FlatAppearance.BorderSize = 0;
             this.buGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buGroup.ForeColor = System.Drawing.Color.White;
+            this.buGroup.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buGroup.Location = new System.Drawing.Point(703, 8);
             this.buGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buGroup.Name = "buGroup";
@@ -159,61 +162,115 @@
             this.buGroup.UseVisualStyleBackColor = false;
             this.buGroup.Click += new System.EventHandler(this.buGroup_Click);
             // 
-            // cboGroupByStatus
+            // cboFilterByStatus
             // 
-            this.cboGroupByStatus.BackColor = System.Drawing.Color.White;
-            this.cboGroupByStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.cboGroupByStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGroupByStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboGroupByStatus.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cboGroupByStatus.FormattingEnabled = true;
-            this.cboGroupByStatus.Location = new System.Drawing.Point(906, 52);
-            this.cboGroupByStatus.Name = "cboGroupByStatus";
-            this.cboGroupByStatus.Size = new System.Drawing.Size(139, 28);
-            this.cboGroupByStatus.TabIndex = 6;
-            this.cboGroupByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cboFilterByStatus.BackColor = System.Drawing.Color.White;
+            this.cboFilterByStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cboFilterByStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFilterByStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboFilterByStatus.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cboFilterByStatus.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.cboFilterByStatus.FormattingEnabled = true;
+            this.cboFilterByStatus.Location = new System.Drawing.Point(877, 50);
+            this.cboFilterByStatus.Name = "cboFilterByStatus";
+            this.cboFilterByStatus.Size = new System.Drawing.Size(168, 28);
+            this.cboFilterByStatus.TabIndex = 6;
+            this.cboFilterByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // listView1
             // 
             this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.DarkOrange;
+            this.listView1.BackColor = System.Drawing.Color.White;
             this.listView1.CheckBoxes = true;
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.White;
+            this.listView1.ForeColor = System.Drawing.Color.Black;
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(18, 85);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1150, 458);
+            this.listView1.Size = new System.Drawing.Size(1150, 471);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
             this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_Click);
             // 
-            // cboGroupByType
+            // cboFilterByType
             // 
-            this.cboGroupByType.BackColor = System.Drawing.Color.White;
-            this.cboGroupByType.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.cboGroupByType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboGroupByType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboGroupByType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cboGroupByType.FormattingEnabled = true;
-            this.cboGroupByType.Location = new System.Drawing.Point(761, 52);
-            this.cboGroupByType.Name = "cboGroupByType";
-            this.cboGroupByType.Size = new System.Drawing.Size(139, 28);
-            this.cboGroupByType.TabIndex = 7;
+            this.cboFilterByType.BackColor = System.Drawing.Color.White;
+            this.cboFilterByType.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cboFilterByType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFilterByType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboFilterByType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cboFilterByType.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.cboFilterByType.FormattingEnabled = true;
+            this.cboFilterByType.Location = new System.Drawing.Point(703, 50);
+            this.cboFilterByType.Name = "cboFilterByType";
+            this.cboFilterByType.Size = new System.Drawing.Size(168, 28);
+            this.cboFilterByType.TabIndex = 7;
+            this.cboFilterByType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // btnToWork
+            // 
+            this.btnToWork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToWork.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnToWork.FlatAppearance.BorderSize = 0;
+            this.btnToWork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToWork.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnToWork.ForeColor = System.Drawing.Color.White;
+            this.btnToWork.Location = new System.Drawing.Point(808, 512);
+            this.btnToWork.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnToWork.Name = "btnToWork";
+            this.btnToWork.Size = new System.Drawing.Size(168, 34);
+            this.btnToWork.TabIndex = 8;
+            this.btnToWork.Text = "В работу";
+            this.btnToWork.UseVisualStyleBackColor = false;
+            this.btnToWork.Click += new System.EventHandler(this.btnToWork_Click);
+            // 
+            // btnDone
+            // 
+            this.btnDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDone.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDone.FlatAppearance.BorderSize = 0;
+            this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDone.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnDone.ForeColor = System.Drawing.Color.White;
+            this.btnDone.Location = new System.Drawing.Point(991, 512);
+            this.btnDone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(168, 34);
+            this.btnDone.TabIndex = 9;
+            this.btnDone.Text = "Сделано";
+            this.btnDone.UseVisualStyleBackColor = false;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbSearch.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.tbSearch.Location = new System.Drawing.Point(513, 50);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(184, 27);
+            this.tbSearch.TabIndex = 10;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // fmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Indigo;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(1182, 567);
-            this.Controls.Add(this.cboGroupByType);
-            this.Controls.Add(this.cboGroupByStatus);
+            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.btnDone);
+            this.Controls.Add(this.btnToWork);
+            this.Controls.Add(this.cboFilterByType);
+            this.Controls.Add(this.cboFilterByStatus);
             this.Controls.Add(this.buGroup);
             this.Controls.Add(this.buNT);
             this.Controls.Add(this.buAbout);
@@ -245,8 +302,11 @@
         private System.Windows.Forms.ToolStripMenuItem вРаботеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сделаноToolStripMenuItem;
         private System.Windows.Forms.Button buGroup;
-        private System.Windows.Forms.ComboBox cboGroupByStatus;
+        private System.Windows.Forms.ComboBox cboFilterByStatus;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ComboBox cboGroupByType;
+        private System.Windows.Forms.ComboBox cboFilterByType;
+        private System.Windows.Forms.Button btnToWork;
+        private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.TextBox tbSearch;
     }
 }

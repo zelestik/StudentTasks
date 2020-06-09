@@ -110,11 +110,12 @@
             // 
             // buAdd
             // 
-            this.buAdd.BackColor = System.Drawing.Color.Indigo;
+            this.buAdd.BackColor = System.Drawing.Color.White;
             this.buAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buAdd.FlatAppearance.BorderSize = 0;
             this.buAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buAdd.Font = new System.Drawing.Font("Gilroy ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buAdd.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buAdd.Location = new System.Drawing.Point(0, 290);
             this.buAdd.Name = "buAdd";
             this.buAdd.Size = new System.Drawing.Size(382, 63);
@@ -146,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cbGroup);

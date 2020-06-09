@@ -51,7 +51,7 @@
             this.tbDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbDescription.BackColor = System.Drawing.Color.Indigo;
+            this.tbDescription.BackColor = System.Drawing.Color.White;
             this.tbDescription.Enabled = false;
             this.tbDescription.ForeColor = System.Drawing.Color.White;
             this.tbDescription.Location = new System.Drawing.Point(12, 55);
@@ -85,11 +85,12 @@
             // 
             // buSave
             // 
-            this.buSave.BackColor = System.Drawing.Color.Indigo;
+            this.buSave.BackColor = System.Drawing.Color.White;
             this.buSave.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buSave.FlatAppearance.BorderSize = 0;
             this.buSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buSave.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buSave.ForeColor = System.Drawing.Color.DodgerBlue;
             this.buSave.Location = new System.Drawing.Point(0, 502);
             this.buSave.Name = "buSave";
             this.buSave.Size = new System.Drawing.Size(982, 51);
@@ -102,7 +103,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkOrange;
+            this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(982, 553);
             this.Controls.Add(this.buSave);
             this.Controls.Add(this.cbStatus);

@@ -66,7 +66,7 @@ namespace УспеваемостьСтудентов
         internal string UpdateOnLocal() // На данный момент не реализованный метод возвращает "", в будущем будет использоваться для обновления информации о задаче в клиентской БД
         {
             string res = "";
-            var db = new Local_db();
+            var db = new LocalDB();
             //var res = db.UpdateTask(this);
             return res.ToString();
         }
@@ -79,7 +79,7 @@ namespace УспеваемостьСтудентов
         }
         public string SendToLocal() // Метод для отправки задачи в локальную БД
         {
-            var db = new Local_db();
+            var db = new LocalDB();
             var res = db.AddTask(this);
             return res.ToString();
         }

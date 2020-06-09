@@ -44,8 +44,8 @@ namespace УспеваемостьСтудентов
         }
         public List<Task> GetTasksOffline()
         {
-            var db = new Local_db();
-            return db.load_tasks();
+            var db = new LocalDB();
+            return db.LoadTasks();
         }
         public List<Task> GetGroupTasks(string username, string password)
         {

@@ -15,14 +15,21 @@ namespace УспеваемостьСтудентов
     public partial class fmTasks : Form
     {
         public User User { get; private set; }
+        private ListViewColumnSorter lvwColumnSorter;
         public fmTasks(User user)
         {
             InitializeComponent();
+            lvwColumnSorter = new ListViewColumnSorter();
+            this.listView1.ListViewItemSorter = lvwColumnSorter;
             User = user;
             if (User is OnlineUser u)
             {
-                if (u.Role == 2) //Если Админ - отключаем кнопку добавления задачи
+                if (u.Role == 2)
+                { //Если Админ - отключаем кнопку добавления задачи
                     buNT.Hide();
+                    cboFilterByStatus.Hide();
+                    cboFilterByType.Hide();
+                }
                 if (u.Group == null)
                     buGroup.Hide();
                 laWelcome.Text += u.Name;
@@ -34,23 +41,32 @@ namespace УспеваемостьСтудентов
                 laWelcome.Text = "Оффлайн режим";
             }
             listView1.FullRowSelect = true;
-            Refresh_Tasks();
-            cboGroupByStatus.Items.Add("Все задачи");
-            cboGroupByStatus.Items.Add("Созданные");
-            cboGroupByStatus.Items.Add("В работе");
-            cboGroupByStatus.Items.Add("Выполненные");
-            cboGroupByStatus.SelectedIndex = 0;
+            RefreshTasks();
+            listView1_ColumnClick(listView1, new ColumnClickEventArgs(2));
+            cboFilterByStatus.Items.Add("Все задачи");
+            cboFilterByStatus.Items.Add("Созданные");
+            cboFilterByStatus.Items.Add("В работе");
+            cboFilterByStatus.Items.Add("Выполненные");
+            cboFilterByStatus.Items.Add("Все невыполненные");
+            cboFilterByStatus.SelectedIndex = 4;
+            cboFilterByType.Items.Add("Все задачи");
+            cboFilterByType.Items.Add("Другие");
+            cboFilterByType.Items.Add("Домашние задания");
+            cboFilterByType.Items.Add("Лабораторные работы");
+            cboFilterByType.SelectedIndex = 0;
 
         }
-        private void Refresh_Tasks()
+        private void RefreshTasks()
         {
             if (User is OnlineUser u_on)
                 u_on.RefreshTasks();
             else if (User is OfflineUser u_off)
                 u_off.RefreshTasks();
-            Refresh_List();
+            RefreshList();
+            btnToWork.Visible = false;
+            btnDone.Visible = false;
         }
-        private void Refresh_List()
+        private void RefreshList()
         {
             listView1.Clear();
             if (User.Tasks != null && User.Tasks.Count != 0)
@@ -69,7 +85,9 @@ namespace УспеваемостьСтудентов
                 }
                 foreach (var task in User.Tasks)
                 {
-                    if (cboGroupByStatus.SelectedIndex == 0 || task.IdStatus == cboGroupByStatus.SelectedIndex - 1)
+                    if ((task.Name.Contains(tbSearch.Text) || task.Description.Contains(tbSearch.Text)) && 
+                        (cboFilterByStatus.SelectedIndex == 0 || task.IdStatus == cboFilterByStatus.SelectedIndex - 1 || (cboFilterByStatus.SelectedIndex == 4 && (task.IdStatus == 0 || task.IdStatus == 1 ))) &&
+                        (cboFilterByType.SelectedIndex == 0 || task.IdType == cboFilterByType.SelectedIndex - 1))
                     {
                         int year = Convert.ToInt32(task.ExpirationDate / 10000);
                         int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
@@ -129,8 +147,8 @@ namespace УспеваемостьСтудентов
                 var res = MessageBox.Show("Сохранить задачи на компьютер? \nВы сможете продолжить работу оффлайн", "Подтвердите действие", MessageBoxButtons.YesNo);
                 if (res == DialogResult.Yes)
                 {
-                    var db = new Local_db();
-                    db.saveTasks(u);
+                    var db = new LocalDB();
+                    db.SaveTasks(u);
                     File.WriteAllText(@"User", User.Username);
                 }
             }
@@ -139,7 +157,7 @@ namespace УспеваемостьСтудентов
 
         private void buRefresh_Click(object sender, EventArgs e)
         {
-            Refresh_Tasks();
+            RefreshTasks();
         }
 
         private void buAbout_Click(object sender, EventArgs e) 
@@ -168,7 +186,87 @@ namespace УспеваемостьСтудентов
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Refresh_List();
+            RefreshList();
+        }
+
+        private void btnToWork_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.CheckedItems)
+            {
+                if (item.Tag is Task task)
+                {
+                    task.IdStatus = 1;
+                    task.Status = "В работе";
+                    if (User is OnlineUser ou)
+                        task.UpdateOnServer(User.Username, ou.Password);
+                }
+                RefreshTasks();
+            }
+        }
+
+        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            var isChecked = false;
+            foreach (var item in listView1.CheckedItems)
+                isChecked = true;
+            if (isChecked)
+            {
+                btnToWork.Visible = true;
+                btnDone.Visible = true;
+            }
+            else
+            {
+                btnToWork.Visible = false;
+                btnDone.Visible = false;
+            }
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.CheckedItems)
+            {
+                if (item.Tag is Task task)
+                {
+                    task.IdStatus = 2;
+                    task.Status = "Сделано";
+                    if (User is OnlineUser ou)
+                        task.UpdateOnServer(User.Username, ou.Password);
+                }
+                RefreshTasks();
+            }
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            RefreshList();
+        }
+
+        // Данный метод сортировки listview предоставлен компанией Microsoft и не был изменён
+        // Подробнее на https://support.microsoft.com/en-us/help/319401/how-to-sort-a-listview-control-by-a-column-in-visual-c
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            listView1.Sort();
         }
     }
 }

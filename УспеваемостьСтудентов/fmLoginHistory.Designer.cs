@@ -1,6 +1,6 @@
 ﻿namespace УспеваемостьСтудентов
 {
-    partial class fmGroupTasks
+    partial class fmLoginHistory
     {
         /// <summary>
         /// Required designer variable.
@@ -29,45 +29,48 @@
         private void InitializeComponent()
         {
             this.listView1 = new System.Windows.Forms.ListView();
+            this.laWelcome = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listView1
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.White;
-            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.Black;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 11);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.Location = new System.Drawing.Point(12, 50);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1150, 540);
-            this.listView1.TabIndex = 1;
+            this.listView1.Size = new System.Drawing.Size(776, 388);
+            this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // fmGroupTasks
+            // laWelcome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.laWelcome.AutoSize = true;
+            this.laWelcome.BackColor = System.Drawing.Color.DodgerBlue;
+            this.laWelcome.Font = new System.Drawing.Font("Gilroy ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.laWelcome.ForeColor = System.Drawing.Color.White;
+            this.laWelcome.Location = new System.Drawing.Point(12, 9);
+            this.laWelcome.Name = "laWelcome";
+            this.laWelcome.Size = new System.Drawing.Size(424, 37);
+            this.laWelcome.TabIndex = 2;
+            this.laWelcome.Text = "Ваша история авторизаций:";
+            // 
+            // fmLoginHistory
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(1182, 562);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.laWelcome);
             this.Controls.Add(this.listView1);
-            this.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ForeColor = System.Drawing.Color.White;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1200, 600);
-            this.Name = "fmGroupTasks";
-            this.Opacity = 0.95D;
-            this.Text = "Задачи группы: ";
+            this.Name = "fmLoginHistory";
+            this.Text = "История авторизаций";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label laWelcome;
     }
 }
