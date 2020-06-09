@@ -10,6 +10,7 @@ using System.Data.SQLite;
 
 namespace УспеваемостьСтудентов
 {
+
     class Local_db
     {
         private string dbFileName = @"localDB.sqlite3";

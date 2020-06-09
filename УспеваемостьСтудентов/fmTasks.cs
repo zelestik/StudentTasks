@@ -34,17 +34,24 @@ namespace УспеваемостьСтудентов
                 laWelcome.Text = "Оффлайн режим";
             }
             listView1.FullRowSelect = true;
-            listView1.MouseClick += new MouseEventHandler(ListView1_Click);
             Refresh_Tasks();
+            cboGroupByStatus.Items.Add("Все задачи");
+            cboGroupByStatus.Items.Add("Созданные");
+            cboGroupByStatus.Items.Add("В работе");
+            cboGroupByStatus.Items.Add("Выполненные");
+            cboGroupByStatus.SelectedIndex = 0;
 
         }
-
         private void Refresh_Tasks()
         {
             if (User is OnlineUser u_on)
                 u_on.RefreshTasks();
             else if (User is OfflineUser u_off)
                 u_off.RefreshTasks();
+            Refresh_List();
+        }
+        private void Refresh_List()
+        {
             listView1.Clear();
             if (User.Tasks != null && User.Tasks.Count != 0)
             {
@@ -62,34 +69,37 @@ namespace УспеваемостьСтудентов
                 }
                 foreach (var task in User.Tasks)
                 {
-                    int year = Convert.ToInt32(task.ExpirationDate / 10000);
-                    int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
-                    int day = Convert.ToInt32(task.ExpirationDate % 100);
-                    DateTime expDate = new DateTime(year, month, day);
-                    int daysLeft = (expDate - DateTime.Now).Days;
-                    ListViewItem item = new ListViewItem(task.Name, Convert.ToInt32(task.Id));
-                    item.SubItems.Add(task.Description);
-                    item.SubItems.Add(expDate.ToString("dd.MM.yyyy"));
-                    item.SubItems.Add(task.Type);
-                    if (User is OnlineUser u_on1 && u_on1.Role == 2) // Для админа добавляем поле Группа
+                    if (cboGroupByStatus.SelectedIndex == 0 || task.IdStatus == cboGroupByStatus.SelectedIndex - 1)
                     {
-                        item.SubItems.Add(task.Group);
+                        int year = Convert.ToInt32(task.ExpirationDate / 10000);
+                        int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
+                        int day = Convert.ToInt32(task.ExpirationDate % 100);
+                        DateTime expDate = new DateTime(year, month, day);
+                        int daysLeft = (expDate - DateTime.Now).Days;
+                        ListViewItem item = new ListViewItem(task.Name, Convert.ToInt32(task.Id));
+                        item.SubItems.Add(task.Description);
+                        item.SubItems.Add(expDate.ToString("dd.MM.yyyy"));
+                        item.SubItems.Add(task.Type);
+                        if (User is OnlineUser u_on1 && u_on1.Role == 2) // Для админа добавляем поле Группа
+                        {
+                            item.SubItems.Add(task.Group);
+                        }
+                        else //Для остальных пользователей - поле с количеством оставшихся дней
+                        {
+                            item.SubItems.Add(task.Status);
+                            if (daysLeft >= 0)
+                                item.SubItems.Add(daysLeft.ToString());
+                            else
+                                item.SubItems.Add("Время истекло");
+                        }
+                        item.Tag = task;
+                        listView1.Items.Add(item);
                     }
-                    else //Для остальных пользователей - поле с количеством оставшихся дней
-                    {
-                        item.SubItems.Add(task.Status);
-                        if (daysLeft >= 0)
-                            item.SubItems.Add(daysLeft.ToString());
-                        else
-                            item.SubItems.Add("Время истекло");
-                    }
-                    item.Tag = task;
-                    listView1.Items.Add(item);
                 }
             }
             else if (User.Tasks is null) // Если при получении задач получили Null - возникла ошибка при получении данных
             {
-                MessageBox.Show("Возникла ошибка сервера, проверьте подключение к интернету и доступность сервера, приложение будет закрыто");
+                MessageBox.Show("Возникла ошибка при получении списка задач, проверьте подключение к интернету и доступность сервера, приложение будет закрыто");
                 Application.Exit();
             }
             else // Если задач нет
@@ -154,6 +164,11 @@ namespace УспеваемостьСтудентов
                 Form fm = new fmGroupTasks(u);
                 fm.Show();
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Refresh_List();
         }
     }
 }

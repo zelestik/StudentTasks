@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.созданоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,26 +39,11 @@
             this.buAbout = new System.Windows.Forms.Button();
             this.buNT = new System.Windows.Forms.Button();
             this.buGroup = new System.Windows.Forms.Button();
+            this.cboGroupByStatus = new System.Windows.Forms.ComboBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.cboGroupByType = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.DarkOrange;
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.White;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(18, 53);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1150, 490);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // contextMenuStrip1
             // 
@@ -115,7 +99,7 @@
             this.buRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buRefresh.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buRefresh.ForeColor = System.Drawing.Color.White;
-            this.buRefresh.Location = new System.Drawing.Point(1051, 12);
+            this.buRefresh.Location = new System.Drawing.Point(1051, 46);
             this.buRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buRefresh.Name = "buRefresh";
             this.buRefresh.Size = new System.Drawing.Size(117, 34);
@@ -132,10 +116,10 @@
             this.buAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buAbout.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buAbout.ForeColor = System.Drawing.Color.White;
-            this.buAbout.Location = new System.Drawing.Point(934, 12);
+            this.buAbout.Location = new System.Drawing.Point(1051, 8);
             this.buAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buAbout.Name = "buAbout";
-            this.buAbout.Size = new System.Drawing.Size(112, 34);
+            this.buAbout.Size = new System.Drawing.Size(117, 34);
             this.buAbout.TabIndex = 3;
             this.buAbout.Text = "Обо мне";
             this.buAbout.UseVisualStyleBackColor = false;
@@ -149,7 +133,7 @@
             this.buNT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buNT.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buNT.ForeColor = System.Drawing.Color.White;
-            this.buNT.Location = new System.Drawing.Point(760, 12);
+            this.buNT.Location = new System.Drawing.Point(877, 8);
             this.buNT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buNT.Name = "buNT";
             this.buNT.Size = new System.Drawing.Size(168, 34);
@@ -166,7 +150,7 @@
             this.buGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buGroup.ForeColor = System.Drawing.Color.White;
-            this.buGroup.Location = new System.Drawing.Point(586, 11);
+            this.buGroup.Location = new System.Drawing.Point(703, 8);
             this.buGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buGroup.Name = "buGroup";
             this.buGroup.Size = new System.Drawing.Size(168, 34);
@@ -175,12 +159,61 @@
             this.buGroup.UseVisualStyleBackColor = false;
             this.buGroup.Click += new System.EventHandler(this.buGroup_Click);
             // 
+            // cboGroupByStatus
+            // 
+            this.cboGroupByStatus.BackColor = System.Drawing.Color.White;
+            this.cboGroupByStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cboGroupByStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGroupByStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboGroupByStatus.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cboGroupByStatus.FormattingEnabled = true;
+            this.cboGroupByStatus.Location = new System.Drawing.Point(906, 52);
+            this.cboGroupByStatus.Name = "cboGroupByStatus";
+            this.cboGroupByStatus.Size = new System.Drawing.Size(139, 28);
+            this.cboGroupByStatus.TabIndex = 6;
+            this.cboGroupByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // listView1
+            // 
+            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listView1.BackColor = System.Drawing.Color.DarkOrange;
+            this.listView1.CheckBoxes = true;
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.ForeColor = System.Drawing.Color.White;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(18, 85);
+            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(1150, 458);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_Click);
+            // 
+            // cboGroupByType
+            // 
+            this.cboGroupByType.BackColor = System.Drawing.Color.White;
+            this.cboGroupByType.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.cboGroupByType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboGroupByType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cboGroupByType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cboGroupByType.FormattingEnabled = true;
+            this.cboGroupByType.Location = new System.Drawing.Point(761, 52);
+            this.cboGroupByType.Name = "cboGroupByType";
+            this.cboGroupByType.Size = new System.Drawing.Size(139, 28);
+            this.cboGroupByType.TabIndex = 7;
+            // 
             // fmTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Indigo;
             this.ClientSize = new System.Drawing.Size(1182, 567);
+            this.Controls.Add(this.cboGroupByType);
+            this.Controls.Add(this.cboGroupByStatus);
             this.Controls.Add(this.buGroup);
             this.Controls.Add(this.buNT);
             this.Controls.Add(this.buAbout);
@@ -202,8 +235,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label laWelcome;
         private System.Windows.Forms.Button buRefresh;
         private System.Windows.Forms.Button buAbout;
@@ -214,5 +245,8 @@
         private System.Windows.Forms.ToolStripMenuItem вРаботеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сделаноToolStripMenuItem;
         private System.Windows.Forms.Button buGroup;
+        private System.Windows.Forms.ComboBox cboGroupByStatus;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ComboBox cboGroupByType;
     }
 }

@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 
 namespace УспеваемостьСтудентов
 {
+
     public abstract class User
     {
         // При работе оффлайн будет создаваться экземпляр класса OfflineUser, а при работе онлайн - OnlineUser
