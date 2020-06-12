@@ -179,6 +179,12 @@
     <Compile Include="fmNewTask.Designer.cs">
       <DependentUpon>fmNewTask.cs</DependentUpon>
     </Compile>
+    <Compile Include="fmRegistration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmRegistration.Designer.cs">
+      <DependentUpon>fmRegistration.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmSelectedItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmNewTask.resx">
       <DependentUpon>fmNewTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmRegistration.resx">
+      <DependentUpon>fmRegistration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmSelectedItem.resx">
       <DependentUpon>fmSelectedItem.cs</DependentUpon>

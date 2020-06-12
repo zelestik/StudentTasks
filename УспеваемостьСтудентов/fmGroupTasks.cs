@@ -52,6 +52,25 @@ namespace УспеваемостьСтудентов
                     item.Tag = task;
                     listView1.Items.Add(item);
                 }
+                btnToPersonal.Visible = false;
+                btnCancel.Visible = false;
+            }
+        }
+
+        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            var isChecked = false;
+            foreach (var item in listView1.CheckedItems)
+                isChecked = true;
+            if (isChecked)
+            {
+                btnToPersonal.Visible = true;
+                btnCancel.Visible = true;
+            }
+            else
+            {
+                btnToPersonal.Visible = false;
+                btnCancel.Visible = false;
             }
         }
     }

@@ -218,7 +218,7 @@
             // 
             // btnToWork
             // 
-            this.btnToWork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToWork.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToWork.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnToWork.FlatAppearance.BorderSize = 0;
             this.btnToWork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -235,7 +235,7 @@
             // 
             // btnDone
             // 
-            this.btnDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDone.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnDone.FlatAppearance.BorderSize = 0;
             this.btnDone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

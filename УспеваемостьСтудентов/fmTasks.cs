@@ -29,6 +29,7 @@ namespace УспеваемостьСтудентов
                     buNT.Hide();
                     cboFilterByStatus.Hide();
                     cboFilterByType.Hide();
+                    listView1.CheckBoxes = false;
                 }
                 if (u.Group == null)
                     buGroup.Hide();
@@ -43,13 +44,13 @@ namespace УспеваемостьСтудентов
             listView1.FullRowSelect = true;
             RefreshTasks();
             listView1_ColumnClick(listView1, new ColumnClickEventArgs(2));
-            cboFilterByStatus.Items.Add("Все задачи");
+            cboFilterByStatus.Items.Add("Все статусы");
             cboFilterByStatus.Items.Add("Созданные");
             cboFilterByStatus.Items.Add("В работе");
             cboFilterByStatus.Items.Add("Выполненные");
             cboFilterByStatus.Items.Add("Все невыполненные");
             cboFilterByStatus.SelectedIndex = 4;
-            cboFilterByType.Items.Add("Все задачи");
+            cboFilterByType.Items.Add("Все типы задач");
             cboFilterByType.Items.Add("Другие");
             cboFilterByType.Items.Add("Домашние задания");
             cboFilterByType.Items.Add("Лабораторные работы");
