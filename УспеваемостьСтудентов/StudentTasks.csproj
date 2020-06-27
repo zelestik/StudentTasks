@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A0B4A7EC-2500-4642-8E7A-D1BBBEC0A58D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>УспеваемостьСтудентов</RootNamespace>
-    <AssemblyName>УспеваемостьСтудентов</AssemblyName>
+    <RootNamespace>StudentTasks</RootNamespace>
+    <AssemblyName>StudentTasks</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -244,6 +244,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

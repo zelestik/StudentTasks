@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
 
     public class Task

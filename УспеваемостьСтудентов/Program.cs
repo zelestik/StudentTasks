@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     static class Program
     {

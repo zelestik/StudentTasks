@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public partial class fmSelectedItem : Form
     {
@@ -18,17 +18,19 @@ namespace УспеваемостьСтудентов
         {
             User = user;
             InitializeComponent();
+            // Заполнение комбобокса вариантами статусов
             cbStatus.Items.Add("Создано");
             cbStatus.Items.Add("В работе");
             cbStatus.Items.Add("Сделано");
-            if (item.Tag is Task task)
+            if (item.Tag is Task task) // Если в тэге элемента записана задача
             {
-                if (User is OnlineUser u && u.Role == 2)
+                if (User is OnlineUser u && u.Role == 2) // У админов скрывается комбобокс со статусами
                     cbStatus.Hide();
-                Task = task;
-                cbStatus.SelectedIndex = Convert.ToInt32(task.IdStatus);
-                lblName.Text = task.Name + ". " + task.Type;
-                txtDescription.Text = item.SubItems[1].Text;
+                Task = task; // Записываем задачу в свойство класса
+                cbStatus.SelectedIndex = Convert.ToInt32(task.IdStatus); // Отметка статуса по ID статуса из задачи
+                lblName.Text = task.Name + ". " + task.Type; // Задаем заголовок
+                txtDescription.Text = item.SubItems[1].Text; // Записываем описание
+                // Формируем дату по числу формата YYYYMMDD
                 int year = Convert.ToInt32(task.ExpirationDate / 10000);
                 int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
                 int day = Convert.ToInt32(task.ExpirationDate % 100);
@@ -44,15 +46,11 @@ namespace УспеваемостьСтудентов
         private void buSave_Click(object sender, EventArgs e)
         {
             string res = "";
-            if (User is OnlineUser u)
-            {
+            if (User is OnlineUser u) // Определяем тип пользователя (онлайн/оффлайн) для определения механизма работы
                 res = Task.UpdateOnServer(u.Username, u.Password);
-            }
             else
-            {
                 //res = Task.UpdateOnLocal();
-            }
-            if (res == "0")
+            if (res == "0") // Если успешно
             {
                 MessageBox.Show("Успешно");
                 Close();

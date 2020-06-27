@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
 
     class LocalDB
@@ -31,6 +31,7 @@ namespace УспеваемостьСтудентов
                 try
                 {
                     sqlite.Open();
+                    // Запрос для создания таблиц БД и наполнения основными данными
                     string sql = @"CREATE TABLE IF NOT EXISTS statuses
                     (id integer not null constraint statuses_pk primary key autoincrement, name text not null);
 
@@ -77,6 +78,7 @@ namespace УспеваемостьСтудентов
 
         public List<Task> LoadTasks() // Загрузка задач из БД
         {
+            // Запрос на получение задач
             var sql = "SELECT tasks.id as id, description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type, creation_date, is_group FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
@@ -89,6 +91,7 @@ namespace УспеваемостьСтудентов
                     {
                         while (reader.Read())
                         {
+                            // Добавляем задачи из результатов запроса
                             Task task = new Task((long)reader["id"], (string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"], (long)reader["creation_date"], (bool)reader["is_group"]);
                             tasks.Add(task);
                         }
@@ -97,6 +100,7 @@ namespace УспеваемостьСтудентов
                 }
                 catch(Exception e)
                 {
+                    // Записываем сообщение ошибки
                     ExceptionMessages = e.Message;
                     return null;
                 }
@@ -109,7 +113,6 @@ namespace УспеваемостьСтудентов
             var sql = "DELETE FROM tasks; ";
             foreach (var task in user.Tasks)
             {
-                //TODO Заменить подстановку данных на sqlite (защита от sql инъекций)
                 sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'creation_date') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, false, {task.CreationDate}); ";
             }
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
@@ -123,6 +126,7 @@ namespace УспеваемостьСтудентов
                 }
                 catch(Exception e)
                 {
+                    // Записываем сообщение ошибки
                     ExceptionMessages = e.Message;
                     return -2;
                 }
@@ -144,6 +148,7 @@ namespace УспеваемостьСтудентов
                 }
                 catch (Exception e)
                 {
+                    // Записываем сообщение ошибки
                     ExceptionMessages = e.Message;
                     return -2;
                 }

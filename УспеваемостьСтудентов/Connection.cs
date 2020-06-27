@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     class Connection
     {
         // Все методы класса возвращают строку с ответом на запрос или null - если возникла ошибка при подключении
         public int Status { get; private set; } // Поле для отладки, статус -2 - проблемы при подключении, -1 - ошибка доступа, 1 - запрос был выполнен успешно
 
-        public string GetJSON(string adr) // adr - параметр запроса
+        // Метод получения JSON с сервера по адресу запроса (adr)
+        public string GetJSON(string adr)
         {
             try
             {
@@ -36,13 +37,15 @@ namespace УспеваемостьСтудентов
             }
             catch (Exception e)
             {
+                // Вывод ошибки сервера
                 MessageBox.Show(e.Message);
                 Status = -2;
                 return null;
 
             }
         }
-        public string PostJSON(string adr, string str) //adr - параметр запроса, str - JSON тело запроса
+        // метод отправки JSON на сервер, adr - параметр запроса, str - JSON тело запроса
+        public string PostJSON(string adr, string str) 
         {
             try
             {
@@ -70,6 +73,7 @@ namespace УспеваемостьСтудентов
             }
             catch(Exception e)
             {
+                // Вывод ошибки сервера
                 MessageBox.Show(e.Message);
                 Status = -2;
                 return null;

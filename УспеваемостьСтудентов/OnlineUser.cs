@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public class OnlineUser : User
     {
@@ -34,9 +34,10 @@ namespace УспеваемостьСтудентов
             }
             catch (Exception e)
             {
+                // Выврдим ошибку
                 MessageBox.Show(e.ToString());
             }
-            if (!(connection_answer is null))
+            if (!(connection_answer is null)) // Если получили ответ - пытаемся десериализовать JSON
             {
                 try
                 {
@@ -50,12 +51,13 @@ namespace УспеваемостьСтудентов
                 }
                 catch (Exception e)
                 {
+                    // Выводим сообщение об ошибке при проблемах с десериализацией JSON
                     MessageBox.Show(e.Message);
                 }
             }
             return con.Status; // Возвращаем код ответа
         }
-        public void RefreshTasks()
+        public void RefreshTasks() // Метод получения задач с сервера
         {
             var tc = new TaskCreator();
             Tasks = tc.GetTasksOnline(this.Username, this.Password);

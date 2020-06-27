@@ -7,16 +7,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public class TaskCreator
     {
-        // Если класс возвращает null - причина записана в Status, -2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
+
+        // Если методы класса возвращают null - причина записана в Status, -2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
         public int Status { get; private set; }
 
-        public List<Task> GetTasksOnline(string username, string password)
+        public List<Task> GetTasksOnline(string username, string password) // Получить задачи с сервера
         {
-            var con = new Connection();
+            var con = new Connection(); // Создаём подключение
             string connection_answer = "";
             try
             {
@@ -26,6 +27,7 @@ namespace УспеваемостьСтудентов
             {
                 MessageBox.Show(e.ToString());
             }
+            // Если не возникло ошибки при получении данных - десериализуем полученный JSON
             if (!(connection_answer is null) && con.Status == 1)
             {
                 JsonReader jr = new JsonTextReader(new StringReader(connection_answer));
@@ -33,7 +35,7 @@ namespace УспеваемостьСтудентов
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
             }
-            else
+            else // Иначе записываем статус. Если у пользователя просто нет задач - возвращаем пустой список. Иначе возвращаем null.
             {
                 Status = con.Status;
                 if (Status == 0)
@@ -42,14 +44,14 @@ namespace УспеваемостьСтудентов
                     return null;
             }
         }
-        public List<Task> GetTasksOffline()
+        public List<Task> GetTasksOffline() // Получение задач из локальной БД
         {
             var db = new LocalDB();
             return db.LoadTasks();
         }
-        public List<Task> GetGroupTasks(string username, string password)
+        public List<Task> GetGroupTasks(string username, string password) // Получение списка групповых задач
         {
-            var con = new Connection();
+            var con = new Connection(); // Создаём подключение
             string connection_answer = "";
             try
             {
@@ -59,6 +61,7 @@ namespace УспеваемостьСтудентов
             {
                 MessageBox.Show(e.ToString());
             }
+            // Если не возникло ошибки при получении данных - десериализуем полученный JSON
             if (!(connection_answer is null) && con.Status == 1)
             {
                 JsonReader jr = new JsonTextReader(new StringReader(connection_answer));
@@ -66,7 +69,7 @@ namespace УспеваемостьСтудентов
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
             }
-            else
+            else // Иначе записываем статус. Если у группы просто нет задач - возвращаем пустой список. Иначе возвращаем null.
             {
                 Status = con.Status;
                 if (Status == 0)

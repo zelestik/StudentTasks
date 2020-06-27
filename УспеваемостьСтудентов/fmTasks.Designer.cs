@@ -1,4 +1,4 @@
-﻿namespace УспеваемостьСтудентов
+﻿namespace StudentTasks
 {
     partial class fmTasks
     {
@@ -126,7 +126,7 @@
             this.btnAboutMe.TabIndex = 3;
             this.btnAboutMe.Text = "Обо мне";
             this.btnAboutMe.UseVisualStyleBackColor = false;
-            this.btnAboutMe.Click += new System.EventHandler(this.buAbout_Click);
+            this.btnAboutMe.Click += new System.EventHandler(this.buAboutMe_Click);
             // 
             // btnNewTask
             // 
@@ -143,7 +143,7 @@
             this.btnNewTask.TabIndex = 4;
             this.btnNewTask.Text = "Новая задача";
             this.btnNewTask.UseVisualStyleBackColor = false;
-            this.btnNewTask.Click += new System.EventHandler(this.buNT_Click);
+            this.btnNewTask.Click += new System.EventHandler(this.buNewTask_Click);
             // 
             // btnGroupTasks
             // 
@@ -160,7 +160,7 @@
             this.btnGroupTasks.TabIndex = 5;
             this.btnGroupTasks.Text = "Задачи группы";
             this.btnGroupTasks.UseVisualStyleBackColor = false;
-            this.btnGroupTasks.Click += new System.EventHandler(this.buGroup_Click);
+            this.btnGroupTasks.Click += new System.EventHandler(this.buGroupTasks_Click);
             // 
             // cboFilterByStatus
             // 
@@ -179,8 +179,8 @@
             // 
             // lvTasks
             // 
-            this.lvTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lvTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvTasks.BackColor = System.Drawing.Color.White;
             this.lvTasks.CheckBoxes = true;

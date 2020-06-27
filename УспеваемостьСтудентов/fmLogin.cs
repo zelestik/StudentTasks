@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public partial class fmLogin : Form
     {
@@ -23,18 +23,21 @@ namespace УспеваемостьСтудентов
 
         private void buLogin_Click(object sender, EventArgs e)
         {
-            if (!cbIsOffline.Checked)
+            if (!cbIsOffline.Checked) // Если не выбран оффлайн режим
             {
-                if (txtUser.Text != "" && txtPass.Text != "")
+                if (txtUser.Text != "" && txtPass.Text != "") // Проверка на пустые поля
                 {
+                    // Создание объекта класса OnlineUser, username приводится к нижнему регистру
                     var user = new OnlineUser(txtUser.Text.ToLower(new CultureInfo("en-US", false)), txtPass.Text);
                     var loginRes = user.LoginUser();
                     if (loginRes == 1) //Успешный вход
                     {
+                        // Открытие формы вывода задач
                         Form fmTasks = new fmTasks(user);
                         this.Hide();
                         fmTasks.Show();
                     }
+                    // Сообщения об ошибках
                     else if (loginRes == -1)
                         MessageBox.Show("Неверный логин или пароль");
                     else if (loginRes == -2)
@@ -43,7 +46,7 @@ namespace УспеваемостьСтудентов
                 else
                     MessageBox.Show("Имя пользователя или пароль не могут быть пустыми");
             }
-            else
+            else // Если выбран оффлайн режим
             {
                 try
                 {

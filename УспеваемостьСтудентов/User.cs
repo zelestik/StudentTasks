@@ -12,14 +12,14 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
 
     public abstract class User
     {
         // При работе оффлайн будет создаваться экземпляр класса OfflineUser, а при работе онлайн - OnlineUser
-        public string Username { get; private set; }
-        public List<Task> Tasks { get;  set; }
+        public string Username { get; private set; } 
+        public List<Task> Tasks { get;  set; } // Список задач
         public User(string username)
         {
             Username = username;

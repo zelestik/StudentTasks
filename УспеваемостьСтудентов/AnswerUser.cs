@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public class AnswerUser // Вспомогательный класс для десериализации JSON
     {

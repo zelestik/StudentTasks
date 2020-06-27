@@ -1,4 +1,4 @@
-﻿namespace УспеваемостьСтудентов
+﻿namespace StudentTasks
 {
     partial class fmGroupTasks
     {

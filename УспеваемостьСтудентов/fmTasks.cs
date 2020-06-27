@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace УспеваемостьСтудентов
+namespace StudentTasks
 {
     public partial class fmTasks : Form
     {
@@ -19,6 +19,7 @@ namespace УспеваемостьСтудентов
         public fmTasks(User user)
         {
             InitializeComponent();
+            // Экземпляр класса сортировщика listview
             lvwColumnSorter = new ListViewColumnSorter();
             this.lvTasks.ListViewItemSorter = lvwColumnSorter;
             User = user;
@@ -31,11 +32,11 @@ namespace УспеваемостьСтудентов
                     cboFilterByType.Hide();
                     lvTasks.CheckBoxes = false;
                 }
-                if (u.Group == null)
+                if (u.Group == null) // Если не пользователь не состоит в группе - скрывае кнопку перехода в групповые задачи
                     btnGroupTasks.Hide();
                 lblWelcome.Text += u.Name;
             }
-            else
+            else // Особые настройки для оффлайн пользователей
             {
                 btnGroupTasks.Hide();
                 btnAboutMe.Hide();
@@ -44,6 +45,7 @@ namespace УспеваемостьСтудентов
             lvTasks.FullRowSelect = true;
             RefreshTasks();
             listView1_ColumnClick(lvTasks, new ColumnClickEventArgs(2));
+            // Заполнение комбоксов фильтров
             cboFilterByStatus.Items.Add("Все статусы");
             cboFilterByStatus.Items.Add("Созданные");
             cboFilterByStatus.Items.Add("В работе");
@@ -59,25 +61,28 @@ namespace УспеваемостьСтудентов
         }
         private void RefreshTasks()
         {
-            if (User is OnlineUser u_on)
+            if (User is OnlineUser u_on) // Определение типа пользователя (онлайн/оффлайн)
                 u_on.RefreshTasks();
             else if (User is OfflineUser u_off)
                 u_off.RefreshTasks();
             RefreshList();
+            // Скрываем кнопки изменения статусов
             btnToWork.Visible = false;
             btnDone.Visible = false;
         }
         private void RefreshList()
         {
             lvTasks.Clear();
+            // Если не возникла ошибка при получении данных и получена как минимум одна задача
             if (User.Tasks != null && User.Tasks.Count != 0)
             {
+                // Формируем шапку listview
                 int col_num = 7;
                 lvTasks.Columns.Add("Название", lvTasks.Width/col_num);
                 lvTasks.Columns.Add("Описание", lvTasks.Width/col_num);
                 lvTasks.Columns.Add("Сделать до", lvTasks.Width / col_num);
                 lvTasks.Columns.Add("Тип", lvTasks.Width / col_num);
-                if (User is OnlineUser u && u.Role == 2)
+                if (User is OnlineUser u && u.Role == 2) // Для администраторов добавляется поле с названием групп и удаляются поля со статусом задач и остатком дней
                     lvTasks.Columns.Add("Группа", lvTasks.Width / col_num);
                 else
                 {
@@ -85,12 +90,15 @@ namespace УспеваемостьСтудентов
                     lvTasks.Columns.Add("Осталось дней", lvTasks.Width / col_num);
                 }
                 lvTasks.Columns.Add("Создано", lvTasks.Width / col_num);
+                // Заполнение listview
                 foreach (var task in User.Tasks)
                 {
+                    // Работа фильтров и поиска
                     if ((task.Name.Contains(txtSearch.Text) || task.Description.Contains(txtSearch.Text)) && 
                         (cboFilterByStatus.SelectedIndex == 0 || task.IdStatus == cboFilterByStatus.SelectedIndex - 1 || (cboFilterByStatus.SelectedIndex == 4 && (task.IdStatus == 0 || task.IdStatus == 1 ))) &&
                         (cboFilterByType.SelectedIndex == 0 || task.IdType == cboFilterByType.SelectedIndex - 1))
                     {
+                        // Формирование даты из числа формата YYYYMMDD
                         int year = Convert.ToInt32(task.ExpirationDate / 10000);
                         int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
                         int day = Convert.ToInt32(task.ExpirationDate % 100);
@@ -112,6 +120,7 @@ namespace УспеваемостьСтудентов
                             else
                                 item.SubItems.Add("Время истекло");
                         }
+                        // Формирование даты из числа формата YYYYMMDD
                         year = Convert.ToInt32(task.CreationDate / 10000);
                         month = Convert.ToInt32(task.CreationDate / 100 - year * 100);
                         day = Convert.ToInt32(task.CreationDate % 100);
@@ -139,7 +148,7 @@ namespace УспеваемостьСтудентов
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (lvTasks.SelectedItems[0].Tag.ToString() != "NOTASK")
+                if (lvTasks.SelectedItems[0].Tag.ToString() != "NOTASK") // Если элемент не помечен как "не задача"
                 {
                     Form fm = new fmSelectedItem(lvTasks.SelectedItems[0], User);
                     fm.Show();
@@ -149,6 +158,7 @@ namespace УспеваемостьСтудентов
 
         private void fmTasks_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // При закрытии формы предлагается сохранить задачи в локальную БД (если не оффлайн пользователь и не алминистратор)
             if (User is OnlineUser u && u.Role != 2) //Если онлайн пользователь и не админ
             {
                 var res = MessageBox.Show("Сохранить задачи на компьютер? \nВы сможете продолжить работу оффлайн", "Подтвердите действие", MessageBoxButtons.YesNo);
@@ -159,6 +169,7 @@ namespace УспеваемостьСтудентов
                     File.WriteAllText(@"User", User.Username);
                 }
             }
+            // При закрытии данной формы закрывается всё приложение
             Application.Exit();
         }
 
@@ -167,8 +178,9 @@ namespace УспеваемостьСтудентов
             RefreshTasks();
         }
 
-        private void buAbout_Click(object sender, EventArgs e) 
+        private void buAboutMe_Click(object sender, EventArgs e) 
         {
+            // Форма "Обо мне" доступна только онлайн пользователям
             if (User is OnlineUser u)
             {
                 Form fm = new fmAbout(u);
@@ -176,14 +188,15 @@ namespace УспеваемостьСтудентов
             }
         }
 
-        private void buNT_Click(object sender, EventArgs e)
+        private void buNewTask_Click(object sender, EventArgs e)
         {
             Form fm = new fmNewTask(User);
             fm.Show();
         }
 
-        private void buGroup_Click(object sender, EventArgs e)
+        private void buGroupTasks_Click(object sender, EventArgs e)
         {
+            // Форма с групповыми задачами доступна только онлайн пользователям, прикрепленным к группе
             if (User is OnlineUser u && u.Group != null)
             {
                 Form fm = new fmGroupTasks(u);
@@ -193,11 +206,13 @@ namespace УспеваемостьСтудентов
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // При смене фильтра - обновление списка (только перерисовка списка, без обращения к серверу)
             RefreshList();
         }
 
         private void btnToWork_Click(object sender, EventArgs e)
         {
+            // Смена статуса для каждой задачи
             foreach (ListViewItem item in lvTasks.CheckedItems)
             {
                 if (item.Tag is Task task)
@@ -213,6 +228,7 @@ namespace УспеваемостьСтудентов
 
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
+            // Если есть отмеченные элементы - отображаются кнопки смены статусы для задач, иначе скрываются
             var isChecked = false;
             foreach (var item in lvTasks.CheckedItems)
                 isChecked = true;
@@ -230,6 +246,7 @@ namespace УспеваемостьСтудентов
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            // Смена статуса для каждой задачи
             foreach (ListViewItem item in lvTasks.CheckedItems)
             {
                 if (item.Tag is Task task)
@@ -245,6 +262,7 @@ namespace УспеваемостьСтудентов
 
         private void tbSearch_TextChanged(object sender, EventArgs e)
         {
+            // Обновляем список при изменении запроса поиска (только перерисовка списка, без обращения к серверу)
             RefreshList();
         }
 
