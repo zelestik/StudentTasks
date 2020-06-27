@@ -34,17 +34,17 @@
             this.созданоToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вРаботеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сделаноToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.laWelcome = new System.Windows.Forms.Label();
-            this.buRefresh = new System.Windows.Forms.Button();
-            this.buAbout = new System.Windows.Forms.Button();
-            this.buNT = new System.Windows.Forms.Button();
-            this.buGroup = new System.Windows.Forms.Button();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnAboutMe = new System.Windows.Forms.Button();
+            this.btnNewTask = new System.Windows.Forms.Button();
+            this.btnGroupTasks = new System.Windows.Forms.Button();
             this.cboFilterByStatus = new System.Windows.Forms.ComboBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvTasks = new System.Windows.Forms.ListView();
             this.cboFilterByType = new System.Windows.Forms.ComboBox();
             this.btnToWork = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
-            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,83 +84,83 @@
             this.сделаноToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
             this.сделаноToolStripMenuItem.Text = "Сделано";
             // 
-            // laWelcome
+            // lblWelcome
             // 
-            this.laWelcome.AutoSize = true;
-            this.laWelcome.Font = new System.Drawing.Font("Gilroy ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.laWelcome.Location = new System.Drawing.Point(23, 14);
-            this.laWelcome.Name = "laWelcome";
-            this.laWelcome.Size = new System.Drawing.Size(199, 37);
-            this.laWelcome.TabIndex = 1;
-            this.laWelcome.Text = "Здравствуй, ";
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Gilroy ExtraBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblWelcome.Location = new System.Drawing.Point(23, 14);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(199, 37);
+            this.lblWelcome.TabIndex = 1;
+            this.lblWelcome.Text = "Здравствуй, ";
             // 
-            // buRefresh
+            // btnRefresh
             // 
-            this.buRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buRefresh.BackColor = System.Drawing.Color.White;
-            this.buRefresh.FlatAppearance.BorderSize = 0;
-            this.buRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buRefresh.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buRefresh.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.buRefresh.Location = new System.Drawing.Point(1051, 46);
-            this.buRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buRefresh.Name = "buRefresh";
-            this.buRefresh.Size = new System.Drawing.Size(117, 34);
-            this.buRefresh.TabIndex = 2;
-            this.buRefresh.Text = "Обновить";
-            this.buRefresh.UseVisualStyleBackColor = false;
-            this.buRefresh.Click += new System.EventHandler(this.buRefresh_Click);
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnRefresh.Location = new System.Drawing.Point(1051, 46);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(117, 34);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "Обновить";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.buRefresh_Click);
             // 
-            // buAbout
+            // btnAboutMe
             // 
-            this.buAbout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buAbout.BackColor = System.Drawing.Color.White;
-            this.buAbout.FlatAppearance.BorderSize = 0;
-            this.buAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buAbout.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buAbout.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.buAbout.Location = new System.Drawing.Point(1051, 8);
-            this.buAbout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buAbout.Name = "buAbout";
-            this.buAbout.Size = new System.Drawing.Size(117, 34);
-            this.buAbout.TabIndex = 3;
-            this.buAbout.Text = "Обо мне";
-            this.buAbout.UseVisualStyleBackColor = false;
-            this.buAbout.Click += new System.EventHandler(this.buAbout_Click);
+            this.btnAboutMe.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAboutMe.BackColor = System.Drawing.Color.White;
+            this.btnAboutMe.FlatAppearance.BorderSize = 0;
+            this.btnAboutMe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAboutMe.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnAboutMe.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnAboutMe.Location = new System.Drawing.Point(1051, 8);
+            this.btnAboutMe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAboutMe.Name = "btnAboutMe";
+            this.btnAboutMe.Size = new System.Drawing.Size(117, 34);
+            this.btnAboutMe.TabIndex = 3;
+            this.btnAboutMe.Text = "Обо мне";
+            this.btnAboutMe.UseVisualStyleBackColor = false;
+            this.btnAboutMe.Click += new System.EventHandler(this.buAbout_Click);
             // 
-            // buNT
+            // btnNewTask
             // 
-            this.buNT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buNT.BackColor = System.Drawing.Color.White;
-            this.buNT.FlatAppearance.BorderSize = 0;
-            this.buNT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buNT.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buNT.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.buNT.Location = new System.Drawing.Point(877, 8);
-            this.buNT.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buNT.Name = "buNT";
-            this.buNT.Size = new System.Drawing.Size(168, 34);
-            this.buNT.TabIndex = 4;
-            this.buNT.Text = "Новая задача";
-            this.buNT.UseVisualStyleBackColor = false;
-            this.buNT.Click += new System.EventHandler(this.buNT_Click);
+            this.btnNewTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewTask.BackColor = System.Drawing.Color.White;
+            this.btnNewTask.FlatAppearance.BorderSize = 0;
+            this.btnNewTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewTask.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNewTask.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnNewTask.Location = new System.Drawing.Point(877, 8);
+            this.btnNewTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNewTask.Name = "btnNewTask";
+            this.btnNewTask.Size = new System.Drawing.Size(168, 34);
+            this.btnNewTask.TabIndex = 4;
+            this.btnNewTask.Text = "Новая задача";
+            this.btnNewTask.UseVisualStyleBackColor = false;
+            this.btnNewTask.Click += new System.EventHandler(this.buNT_Click);
             // 
-            // buGroup
+            // btnGroupTasks
             // 
-            this.buGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buGroup.BackColor = System.Drawing.Color.White;
-            this.buGroup.FlatAppearance.BorderSize = 0;
-            this.buGroup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buGroup.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.buGroup.Location = new System.Drawing.Point(703, 8);
-            this.buGroup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buGroup.Name = "buGroup";
-            this.buGroup.Size = new System.Drawing.Size(168, 34);
-            this.buGroup.TabIndex = 5;
-            this.buGroup.Text = "Задачи группы";
-            this.buGroup.UseVisualStyleBackColor = false;
-            this.buGroup.Click += new System.EventHandler(this.buGroup_Click);
+            this.btnGroupTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGroupTasks.BackColor = System.Drawing.Color.White;
+            this.btnGroupTasks.FlatAppearance.BorderSize = 0;
+            this.btnGroupTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGroupTasks.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnGroupTasks.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnGroupTasks.Location = new System.Drawing.Point(703, 8);
+            this.btnGroupTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGroupTasks.Name = "btnGroupTasks";
+            this.btnGroupTasks.Size = new System.Drawing.Size(168, 34);
+            this.btnGroupTasks.TabIndex = 5;
+            this.btnGroupTasks.Text = "Задачи группы";
+            this.btnGroupTasks.UseVisualStyleBackColor = false;
+            this.btnGroupTasks.Click += new System.EventHandler(this.buGroup_Click);
             // 
             // cboFilterByStatus
             // 
@@ -177,29 +177,29 @@
             this.cboFilterByStatus.TabIndex = 6;
             this.cboFilterByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // listView1
+            // lvTasks
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.White;
-            this.listView1.CheckBoxes = true;
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.Black;
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(18, 85);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1150, 471);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
-            this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
-            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_Click);
+            this.lvTasks.BackColor = System.Drawing.Color.White;
+            this.lvTasks.CheckBoxes = true;
+            this.lvTasks.ContextMenuStrip = this.contextMenuStrip1;
+            this.lvTasks.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvTasks.ForeColor = System.Drawing.Color.Black;
+            this.lvTasks.FullRowSelect = true;
+            this.lvTasks.HideSelection = false;
+            this.lvTasks.Location = new System.Drawing.Point(18, 85);
+            this.lvTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lvTasks.MultiSelect = false;
+            this.lvTasks.Name = "lvTasks";
+            this.lvTasks.Size = new System.Drawing.Size(1150, 471);
+            this.lvTasks.TabIndex = 0;
+            this.lvTasks.UseCompatibleStateImageBehavior = false;
+            this.lvTasks.View = System.Windows.Forms.View.Details;
+            this.lvTasks.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
+            this.lvTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
+            this.lvTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_Click);
             // 
             // cboFilterByType
             // 
@@ -250,15 +250,15 @@
             this.btnDone.UseVisualStyleBackColor = false;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
-            // tbSearch
+            // txtSearch
             // 
-            this.tbSearch.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbSearch.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.tbSearch.Location = new System.Drawing.Point(513, 50);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(184, 27);
-            this.tbSearch.TabIndex = 10;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.txtSearch.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.txtSearch.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.txtSearch.Location = new System.Drawing.Point(513, 50);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(184, 27);
+            this.txtSearch.TabIndex = 10;
+            this.txtSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // fmTasks
             // 
@@ -266,17 +266,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(1182, 567);
-            this.Controls.Add(this.tbSearch);
+            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnToWork);
             this.Controls.Add(this.cboFilterByType);
             this.Controls.Add(this.cboFilterByStatus);
-            this.Controls.Add(this.buGroup);
-            this.Controls.Add(this.buNT);
-            this.Controls.Add(this.buAbout);
-            this.Controls.Add(this.buRefresh);
-            this.Controls.Add(this.laWelcome);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.btnGroupTasks);
+            this.Controls.Add(this.btnNewTask);
+            this.Controls.Add(this.btnAboutMe);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.lblWelcome);
+            this.Controls.Add(this.lvTasks);
             this.ForeColor = System.Drawing.Color.White;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimumSize = new System.Drawing.Size(1200, 600);
@@ -292,21 +292,21 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label laWelcome;
-        private System.Windows.Forms.Button buRefresh;
-        private System.Windows.Forms.Button buAbout;
-        private System.Windows.Forms.Button buNT;
+        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnAboutMe;
+        private System.Windows.Forms.Button btnNewTask;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem созданоToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem вРаботеToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem сделаноToolStripMenuItem;
-        private System.Windows.Forms.Button buGroup;
+        private System.Windows.Forms.Button btnGroupTasks;
         private System.Windows.Forms.ComboBox cboFilterByStatus;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvTasks;
         private System.Windows.Forms.ComboBox cboFilterByType;
         private System.Windows.Forms.Button btnToWork;
         private System.Windows.Forms.Button btnDone;
-        private System.Windows.Forms.TextBox tbSearch;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }

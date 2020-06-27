@@ -34,8 +34,9 @@ namespace УспеваемостьСтудентов
                     return answer;
                 }
             }
-            catch
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 Status = -2;
                 return null;
 

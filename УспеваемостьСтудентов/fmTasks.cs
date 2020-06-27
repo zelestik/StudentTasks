@@ -20,30 +20,30 @@ namespace УспеваемостьСтудентов
         {
             InitializeComponent();
             lvwColumnSorter = new ListViewColumnSorter();
-            this.listView1.ListViewItemSorter = lvwColumnSorter;
+            this.lvTasks.ListViewItemSorter = lvwColumnSorter;
             User = user;
             if (User is OnlineUser u)
             {
                 if (u.Role == 2)
-                { //Если Админ - отключаем кнопку добавления задачи
-                    buNT.Hide();
+                { //Если Админ - отключаем кнопку добавления задачи, фильтры и checkBox
+                    btnNewTask.Hide();
                     cboFilterByStatus.Hide();
                     cboFilterByType.Hide();
-                    listView1.CheckBoxes = false;
+                    lvTasks.CheckBoxes = false;
                 }
                 if (u.Group == null)
-                    buGroup.Hide();
-                laWelcome.Text += u.Name;
+                    btnGroupTasks.Hide();
+                lblWelcome.Text += u.Name;
             }
             else
             {
-                buGroup.Hide();
-                buAbout.Hide();
-                laWelcome.Text = "Оффлайн режим";
+                btnGroupTasks.Hide();
+                btnAboutMe.Hide();
+                lblWelcome.Text = "Оффлайн режим";
             }
-            listView1.FullRowSelect = true;
+            lvTasks.FullRowSelect = true;
             RefreshTasks();
-            listView1_ColumnClick(listView1, new ColumnClickEventArgs(2));
+            listView1_ColumnClick(lvTasks, new ColumnClickEventArgs(2));
             cboFilterByStatus.Items.Add("Все статусы");
             cboFilterByStatus.Items.Add("Созданные");
             cboFilterByStatus.Items.Add("В работе");
@@ -69,24 +69,25 @@ namespace УспеваемостьСтудентов
         }
         private void RefreshList()
         {
-            listView1.Clear();
+            lvTasks.Clear();
             if (User.Tasks != null && User.Tasks.Count != 0)
             {
-                int col_num = 6;
-                listView1.Columns.Add("Название", listView1.Width/col_num);
-                listView1.Columns.Add("Описание", listView1.Width/col_num);
-                listView1.Columns.Add("Сделать до", listView1.Width / col_num);
-                listView1.Columns.Add("Тип", listView1.Width / col_num);
+                int col_num = 7;
+                lvTasks.Columns.Add("Название", lvTasks.Width/col_num);
+                lvTasks.Columns.Add("Описание", lvTasks.Width/col_num);
+                lvTasks.Columns.Add("Сделать до", lvTasks.Width / col_num);
+                lvTasks.Columns.Add("Тип", lvTasks.Width / col_num);
                 if (User is OnlineUser u && u.Role == 2)
-                    listView1.Columns.Add("Группа", listView1.Width / col_num);
+                    lvTasks.Columns.Add("Группа", lvTasks.Width / col_num);
                 else
                 {
-                    listView1.Columns.Add("Статус", listView1.Width / col_num);
-                    listView1.Columns.Add("Осталось дней", listView1.Width / col_num);
+                    lvTasks.Columns.Add("Статус", lvTasks.Width / col_num);
+                    lvTasks.Columns.Add("Осталось дней", lvTasks.Width / col_num);
                 }
+                lvTasks.Columns.Add("Создано", lvTasks.Width / col_num);
                 foreach (var task in User.Tasks)
                 {
-                    if ((task.Name.Contains(tbSearch.Text) || task.Description.Contains(tbSearch.Text)) && 
+                    if ((task.Name.Contains(txtSearch.Text) || task.Description.Contains(txtSearch.Text)) && 
                         (cboFilterByStatus.SelectedIndex == 0 || task.IdStatus == cboFilterByStatus.SelectedIndex - 1 || (cboFilterByStatus.SelectedIndex == 4 && (task.IdStatus == 0 || task.IdStatus == 1 ))) &&
                         (cboFilterByType.SelectedIndex == 0 || task.IdType == cboFilterByType.SelectedIndex - 1))
                     {
@@ -111,8 +112,13 @@ namespace УспеваемостьСтудентов
                             else
                                 item.SubItems.Add("Время истекло");
                         }
+                        year = Convert.ToInt32(task.CreationDate / 10000);
+                        month = Convert.ToInt32(task.CreationDate / 100 - year * 100);
+                        day = Convert.ToInt32(task.CreationDate % 100);
+                        DateTime creationDate = new DateTime(year, month, day);
+                        item.SubItems.Add(creationDate.ToString("dd.MM.yyyy"));
                         item.Tag = task;
-                        listView1.Items.Add(item);
+                        lvTasks.Items.Add(item);
                     }
                 }
             }
@@ -123,19 +129,19 @@ namespace УспеваемостьСтудентов
             }
             else // Если задач нет
             {
-                listView1.Columns.Add("", -2, HorizontalAlignment.Left);
+                lvTasks.Columns.Add("", -2, HorizontalAlignment.Left);
                 ListViewItem item = new ListViewItem("У Вас нет задач");
                 item.Tag = "NOTASK";
-                listView1.Items.Add(item);
+                lvTasks.Items.Add(item);
             }
         }
         private void ListView1_Click(object sender, MouseEventArgs e) // Выбор задачи
         {
             if (e.Button == MouseButtons.Left)
             {
-                if (listView1.SelectedItems[0].Tag.ToString() != "NOTASK")
+                if (lvTasks.SelectedItems[0].Tag.ToString() != "NOTASK")
                 {
-                    Form fm = new fmSelectedItem(listView1.SelectedItems[0], User);
+                    Form fm = new fmSelectedItem(lvTasks.SelectedItems[0], User);
                     fm.Show();
                 }
             }
@@ -192,7 +198,7 @@ namespace УспеваемостьСтудентов
 
         private void btnToWork_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listView1.CheckedItems)
+            foreach (ListViewItem item in lvTasks.CheckedItems)
             {
                 if (item.Tag is Task task)
                 {
@@ -208,7 +214,7 @@ namespace УспеваемостьСтудентов
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var isChecked = false;
-            foreach (var item in listView1.CheckedItems)
+            foreach (var item in lvTasks.CheckedItems)
                 isChecked = true;
             if (isChecked)
             {
@@ -224,7 +230,7 @@ namespace УспеваемостьСтудентов
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listView1.CheckedItems)
+            foreach (ListViewItem item in lvTasks.CheckedItems)
             {
                 if (item.Tag is Task task)
                 {
@@ -267,7 +273,7 @@ namespace УспеваемостьСтудентов
             }
 
             // Perform the sort with these new sort options.
-            listView1.Sort();
+            lvTasks.Sort();
         }
     }
 }

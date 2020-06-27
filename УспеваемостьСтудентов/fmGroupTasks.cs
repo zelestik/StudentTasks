@@ -25,15 +25,16 @@ namespace УспеваемостьСтудентов
         {
             var tc = new TaskCreator();
             Tasks = tc.GetGroupTasks(User.Username, User.Password);
-            listView1.Clear();
+            lvGroupTasks.Clear();
             if (Tasks != null && Tasks.Count != 0)
             {
-                int col_num = 5;
-                listView1.Columns.Add("Название", listView1.Width / col_num);
-                listView1.Columns.Add("Описание", listView1.Width / col_num);
-                listView1.Columns.Add("Сделать до", listView1.Width / col_num);
-                listView1.Columns.Add("Тип", listView1.Width / col_num);
-                listView1.Columns.Add("Осталось дней", listView1.Width / col_num);
+                int col_num = 6;
+                lvGroupTasks.Columns.Add("Название", lvGroupTasks.Width / col_num);
+                lvGroupTasks.Columns.Add("Описание", lvGroupTasks.Width / col_num);
+                lvGroupTasks.Columns.Add("Сделать до", lvGroupTasks.Width / col_num);
+                lvGroupTasks.Columns.Add("Тип", lvGroupTasks.Width / col_num);
+                lvGroupTasks.Columns.Add("Осталось дней", lvGroupTasks.Width / col_num);
+                lvGroupTasks.Columns.Add("Создано", lvGroupTasks.Width / col_num);
                 foreach (var task in Tasks)
                 {
                     int year = Convert.ToInt32(task.ExpirationDate / 10000);
@@ -49,8 +50,13 @@ namespace УспеваемостьСтудентов
                         item.SubItems.Add(daysLeft.ToString());
                     else
                         item.SubItems.Add("Время истекло");
+                    year = Convert.ToInt32(task.CreationDate / 10000);
+                    month = Convert.ToInt32(task.CreationDate / 100 - year * 100);
+                    day = Convert.ToInt32(task.CreationDate % 100);
+                    var creationDate = new DateTime(year, month, day);
+                    item.SubItems.Add(creationDate.ToString("dd.MM.yyyy"));
                     item.Tag = task;
-                    listView1.Items.Add(item);
+                    lvGroupTasks.Items.Add(item);
                 }
                 btnToPersonal.Visible = false;
                 btnCancel.Visible = false;
@@ -60,7 +66,7 @@ namespace УспеваемостьСтудентов
         private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             var isChecked = false;
-            foreach (var item in listView1.CheckedItems)
+            foreach (var item in lvGroupTasks.CheckedItems)
                 isChecked = true;
             if (isChecked)
             {

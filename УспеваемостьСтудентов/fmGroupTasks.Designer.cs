@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lvGroupTasks = new System.Windows.Forms.ListView();
             this.btnToPersonal = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // listView1
+            // lvGroupTasks
             // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lvGroupTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.BackColor = System.Drawing.Color.White;
-            this.listView1.CheckBoxes = true;
-            this.listView1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.ForeColor = System.Drawing.Color.Black;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(16, 11);
-            this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1150, 540);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
+            this.lvGroupTasks.BackColor = System.Drawing.Color.White;
+            this.lvGroupTasks.CheckBoxes = true;
+            this.lvGroupTasks.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvGroupTasks.ForeColor = System.Drawing.Color.Black;
+            this.lvGroupTasks.HideSelection = false;
+            this.lvGroupTasks.Location = new System.Drawing.Point(16, 11);
+            this.lvGroupTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lvGroupTasks.Name = "lvGroupTasks";
+            this.lvGroupTasks.Size = new System.Drawing.Size(1150, 540);
+            this.lvGroupTasks.TabIndex = 1;
+            this.lvGroupTasks.UseCompatibleStateImageBehavior = false;
+            this.lvGroupTasks.View = System.Windows.Forms.View.Details;
+            this.lvGroupTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
             // 
             // btnToPersonal
             // 
@@ -92,7 +92,7 @@
             this.ClientSize = new System.Drawing.Size(1182, 562);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnToPersonal);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lvGroupTasks);
             this.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.White;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -106,7 +106,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lvGroupTasks;
         private System.Windows.Forms.Button btnToPersonal;
         private System.Windows.Forms.Button btnCancel;
     }

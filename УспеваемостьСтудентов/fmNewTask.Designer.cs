@@ -32,12 +32,12 @@
             this.laDescription = new System.Windows.Forms.Label();
             this.laType = new System.Windows.Forms.Label();
             this.laExpDate = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.buAdd = new System.Windows.Forms.Button();
-            this.cbGroup = new System.Windows.Forms.CheckBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtSubject = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.cbType = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.cbIsGroup = new System.Windows.Forms.CheckBox();
+            this.dateTimePickerExpiration = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // laSubject
@@ -80,68 +80,68 @@
             this.laExpDate.TabIndex = 3;
             this.laExpDate.Text = "Выполнить до";
             // 
-            // textBox1
+            // txtSubject
             // 
-            this.textBox1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(185, 9);
-            this.textBox1.MaxLength = 32;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 27);
-            this.textBox1.TabIndex = 4;
+            this.txtSubject.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSubject.Location = new System.Drawing.Point(185, 9);
+            this.txtSubject.MaxLength = 32;
+            this.txtSubject.Name = "txtSubject";
+            this.txtSubject.Size = new System.Drawing.Size(185, 27);
+            this.txtSubject.TabIndex = 4;
             // 
-            // textBox2
+            // txtDescription
             // 
-            this.textBox2.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(185, 46);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(185, 81);
-            this.textBox2.TabIndex = 5;
+            this.txtDescription.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescription.Location = new System.Drawing.Point(185, 46);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(185, 81);
+            this.txtDescription.TabIndex = 5;
             // 
-            // comboBox1
+            // cbType
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.White;
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.Location = new System.Drawing.Point(185, 133);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(185, 28);
-            this.comboBox1.TabIndex = 8;
+            this.cbType.BackColor = System.Drawing.Color.White;
+            this.cbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbType.Location = new System.Drawing.Point(185, 133);
+            this.cbType.Name = "cbType";
+            this.cbType.Size = new System.Drawing.Size(185, 28);
+            this.cbType.TabIndex = 8;
             // 
-            // buAdd
+            // btnAdd
             // 
-            this.buAdd.BackColor = System.Drawing.Color.White;
-            this.buAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buAdd.FlatAppearance.BorderSize = 0;
-            this.buAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buAdd.Font = new System.Drawing.Font("Gilroy ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buAdd.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.buAdd.Location = new System.Drawing.Point(0, 290);
-            this.buAdd.Name = "buAdd";
-            this.buAdd.Size = new System.Drawing.Size(382, 63);
-            this.buAdd.TabIndex = 9;
-            this.buAdd.Text = "Добавить";
-            this.buAdd.UseVisualStyleBackColor = false;
-            this.buAdd.Click += new System.EventHandler(this.buAdd_Click);
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Gilroy ExtraBold", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnAdd.Location = new System.Drawing.Point(0, 290);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(382, 63);
+            this.btnAdd.TabIndex = 9;
+            this.btnAdd.Text = "Добавить";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.buAdd_Click);
             // 
-            // cbGroup
+            // cbIsGroup
             // 
-            this.cbGroup.AutoSize = true;
-            this.cbGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cbGroup.Location = new System.Drawing.Point(17, 209);
-            this.cbGroup.Name = "cbGroup";
-            this.cbGroup.Size = new System.Drawing.Size(206, 29);
-            this.cbGroup.TabIndex = 10;
-            this.cbGroup.Text = "Групповая задача";
-            this.cbGroup.UseVisualStyleBackColor = true;
+            this.cbIsGroup.AutoSize = true;
+            this.cbIsGroup.Font = new System.Drawing.Font("Gilroy ExtraBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cbIsGroup.Location = new System.Drawing.Point(17, 209);
+            this.cbIsGroup.Name = "cbIsGroup";
+            this.cbIsGroup.Size = new System.Drawing.Size(206, 29);
+            this.cbIsGroup.TabIndex = 10;
+            this.cbIsGroup.Text = "Групповая задача";
+            this.cbIsGroup.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dateTimePickerExpiration
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(185, 170);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(185, 28);
-            this.dateTimePicker1.TabIndex = 11;
+            this.dateTimePickerExpiration.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerExpiration.Location = new System.Drawing.Point(185, 170);
+            this.dateTimePickerExpiration.Name = "dateTimePickerExpiration";
+            this.dateTimePickerExpiration.Size = new System.Drawing.Size(185, 28);
+            this.dateTimePickerExpiration.TabIndex = 11;
             // 
             // fmNewTask
             // 
@@ -149,12 +149,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.cbGroup);
-            this.Controls.Add(this.buAdd);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dateTimePickerExpiration);
+            this.Controls.Add(this.cbIsGroup);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.cbType);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.txtSubject);
             this.Controls.Add(this.laExpDate);
             this.Controls.Add(this.laType);
             this.Controls.Add(this.laDescription);
@@ -177,11 +177,11 @@
         private System.Windows.Forms.Label laDescription;
         private System.Windows.Forms.Label laType;
         private System.Windows.Forms.Label laExpDate;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button buAdd;
-        private System.Windows.Forms.CheckBox cbGroup;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtSubject;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.ComboBox cbType;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.CheckBox cbIsGroup;
+        private System.Windows.Forms.DateTimePicker dateTimePickerExpiration;
     }
 }

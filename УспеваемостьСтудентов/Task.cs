@@ -22,7 +22,7 @@ namespace УспеваемостьСтудентов
         public long ExpirationDate { get; set; } // Дата "сделать до" числом в формате YYYYMMDD
 
         [JsonProperty("id")]
-        public int Id { get; set; } // id задачи на сервере/в локальной БД
+        public long Id { get; set; } // id задачи на сервере/в локальной БД
 
         [JsonProperty("name")]
         public string Name { get; set; } // Название задачи
@@ -42,8 +42,15 @@ namespace УспеваемостьСтудентов
         [JsonProperty("group")]
         public string Group { get; set; } // Название группы (ID группы не хранится у клиента)
 
-        public Task(string description, long expirationDate, string name, long id_status, long id_type, string status, string type) // Конструктор задачи
+        [JsonProperty("creation_date")]
+        public long CreationDate { get; set; } // Дата создания задачи
+
+        [JsonProperty("is_group")]
+        public bool IsGroup { get; set; } // Является ли задача групповой
+
+        public Task(long Id, string description, long expirationDate, string name, long id_status, long id_type, string status, string type, long creationDate, bool isGroup) // Конструктор задачи
         {
+            this.Id = Id;
             this.Description = description;
             this.ExpirationDate = expirationDate;
             this.Name = name;
@@ -51,6 +58,8 @@ namespace УспеваемостьСтудентов
             this.IdType = id_type;
             this.Status = status;
             this.Type = type;
+            this.CreationDate = creationDate;
+            this.IsGroup = isGroup;
         }
 
         public string SendToServer(string username, string password, bool is_group) // Метод для отправки задачи на сервер

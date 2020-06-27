@@ -27,13 +27,13 @@ namespace УспеваемостьСтудентов
                     cbStatus.Hide();
                 Task = task;
                 cbStatus.SelectedIndex = Convert.ToInt32(task.IdStatus);
-                laName.Text = task.Name + ". " + task.Type;
-                tbDescription.Text = item.SubItems[1].Text;
+                lblName.Text = task.Name + ". " + task.Type;
+                txtDescription.Text = item.SubItems[1].Text;
                 int year = Convert.ToInt32(task.ExpirationDate / 10000);
                 int month = Convert.ToInt32(task.ExpirationDate / 100 - year * 100);
                 int day = Convert.ToInt32(task.ExpirationDate % 100);
                 DateTime expDate = new DateTime(year, month, day);
-                dateTimePicker1.Value = (expDate);
+                dateTimePickerExpiration.Value = (expDate);
             }
             else
                 Close(); // Форма будет закрыта, если в тэге элемента нет задачи

@@ -28,51 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.laName = new System.Windows.Forms.Label();
-            this.tbName = new System.Windows.Forms.TextBox();
-            this.laGroup = new System.Windows.Forms.Label();
-            this.laRole = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.lblGroup = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
             this.btnLoginHistory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // laName
+            // lblName
             // 
-            this.laName.AutoSize = true;
-            this.laName.Location = new System.Drawing.Point(16, 16);
-            this.laName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.laName.Name = "laName";
-            this.laName.Size = new System.Drawing.Size(90, 20);
-            this.laName.TabIndex = 0;
-            this.laName.Text = "Ваше имя";
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(16, 16);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(90, 20);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Ваше имя";
             // 
-            // tbName
+            // txtName
             // 
-            this.tbName.Location = new System.Drawing.Point(20, 41);
-            this.tbName.Margin = new System.Windows.Forms.Padding(4);
-            this.tbName.Name = "tbName";
-            this.tbName.ReadOnly = true;
-            this.tbName.Size = new System.Drawing.Size(379, 27);
-            this.tbName.TabIndex = 1;
+            this.txtName.Location = new System.Drawing.Point(20, 41);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Name = "txtName";
+            this.txtName.ReadOnly = true;
+            this.txtName.Size = new System.Drawing.Size(379, 27);
+            this.txtName.TabIndex = 1;
             // 
-            // laGroup
+            // lblGroup
             // 
-            this.laGroup.AutoSize = true;
-            this.laGroup.Location = new System.Drawing.Point(15, 78);
-            this.laGroup.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.laGroup.Name = "laGroup";
-            this.laGroup.Size = new System.Drawing.Size(123, 20);
-            this.laGroup.TabIndex = 2;
-            this.laGroup.Text = "Ваша группа:";
+            this.lblGroup.AutoSize = true;
+            this.lblGroup.Location = new System.Drawing.Point(15, 78);
+            this.lblGroup.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblGroup.Name = "lblGroup";
+            this.lblGroup.Size = new System.Drawing.Size(123, 20);
+            this.lblGroup.TabIndex = 2;
+            this.lblGroup.Text = "Ваша группа:";
             // 
-            // laRole
+            // lblRole
             // 
-            this.laRole.AutoSize = true;
-            this.laRole.Location = new System.Drawing.Point(16, 111);
-            this.laRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.laRole.Name = "laRole";
-            this.laRole.Size = new System.Drawing.Size(109, 20);
-            this.laRole.TabIndex = 3;
-            this.laRole.Text = "Ваша роль: ";
+            this.lblRole.AutoSize = true;
+            this.lblRole.Location = new System.Drawing.Point(16, 111);
+            this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(109, 20);
+            this.lblRole.TabIndex = 3;
+            this.lblRole.Text = "Ваша роль: ";
             // 
             // btnLoginHistory
             // 
@@ -96,10 +96,10 @@
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(415, 279);
             this.Controls.Add(this.btnLoginHistory);
-            this.Controls.Add(this.laRole);
-            this.Controls.Add(this.laGroup);
-            this.Controls.Add(this.tbName);
-            this.Controls.Add(this.laName);
+            this.Controls.Add(this.lblRole);
+            this.Controls.Add(this.lblGroup);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.lblName);
             this.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.White;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -114,10 +114,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label laName;
-        private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.Label laGroup;
-        private System.Windows.Forms.Label laRole;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblGroup;
+        private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Button btnLoginHistory;
     }
 }

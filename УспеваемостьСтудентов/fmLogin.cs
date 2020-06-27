@@ -23,21 +23,21 @@ namespace УспеваемостьСтудентов
 
         private void buLogin_Click(object sender, EventArgs e)
         {
-            if (!cbOffline.Checked)
+            if (!cbIsOffline.Checked)
             {
-                if (tbUser.Text != "" && tbPass.Text != "")
+                if (txtUser.Text != "" && txtPass.Text != "")
                 {
-                    var user = new OnlineUser(tbUser.Text.ToLower(new CultureInfo("en-US", false)), tbPass.Text);
-                    var a = user.LoginUser();
-                    if (a == 1) //Успешный вход
+                    var user = new OnlineUser(txtUser.Text.ToLower(new CultureInfo("en-US", false)), txtPass.Text);
+                    var loginRes = user.LoginUser();
+                    if (loginRes == 1) //Успешный вход
                     {
                         Form fmTasks = new fmTasks(user);
                         this.Hide();
                         fmTasks.Show();
                     }
-                    else if (a == -1)
+                    else if (loginRes == -1)
                         MessageBox.Show("Неверный логин или пароль");
-                    else if (a == -2)
+                    else if (loginRes == -2)
                         MessageBox.Show("Возникла ошибка сервера, проверьте подключение к интернету и доступность сервера");
                 }
                 else
@@ -74,8 +74,8 @@ namespace УспеваемостьСтудентов
 
         private void cbOffline_CheckedChanged(object sender, EventArgs e)
         {
-            tbUser.Enabled = !tbUser.Enabled;
-            tbPass.Enabled = !tbPass.Enabled;
+            txtUser.Enabled = !txtUser.Enabled;
+            txtPass.Enabled = !txtPass.Enabled;
         }
     }
 }

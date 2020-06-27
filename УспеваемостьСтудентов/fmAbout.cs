@@ -15,17 +15,17 @@ namespace УспеваемостьСтудентов
         public fmAbout(OnlineUser user)
         {
             InitializeComponent();
-            tbName.Text = user.Name;
+            txtName.Text = user.Name;
             if (user.Group == null || user.Group == "")
-                laGroup.Text = "Вы не прикреплены к группе ";
+                lblGroup.Text = "Вы не прикреплены к группе ";
             else
-                laGroup.Text += user.Group;
+                lblGroup.Text += user.Group;
             if (user.Role == 0)
-                laRole.Text += "Студент";
+                lblRole.Text += "Студент";
             else if (user.Role == 1)
-                laRole.Text += "Староста";
+                lblRole.Text += "Староста";
             else if (user.Role == 2)
-                laRole.Text += "Администратор";
+                lblRole.Text += "Администратор";
         }
 
         private void btnLoginHistory_Click(object sender, EventArgs e)

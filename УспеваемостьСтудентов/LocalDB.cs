@@ -50,7 +50,9 @@ namespace УспеваемостьСтудентов
                     expiration_date integer not null, 
                     id_status integer default 0 not null references statuses, 
                     id_type integer references task_types, 
-                    is_changed integer default 0 not null
+                    is_changed boolean default false not null,
+                    is_group boolean default false not null,
+                    creation_date integer default 0 not null
                 );
                 INSERT INTO task_types(id,name) SELECT 0, 'Другое' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 0 AND name = 'Другое');
                 INSERT INTO task_types(id,name) SELECT 1, 'Домашнее задание' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 1 AND name = 'Домашнее задание');
@@ -75,7 +77,7 @@ namespace УспеваемостьСтудентов
 
         public List<Task> LoadTasks() // Загрузка задач из БД
         {
-            var sql = "SELECT description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
+            var sql = "SELECT tasks.id as id, description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type, creation_date, is_group FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
@@ -87,7 +89,7 @@ namespace УспеваемостьСтудентов
                     {
                         while (reader.Read())
                         {
-                            Task task = new Task((string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"]);
+                            Task task = new Task((long)reader["id"], (string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"], (long)reader["creation_date"], (bool)reader["is_group"]);
                             tasks.Add(task);
                         }
                     }
@@ -108,7 +110,7 @@ namespace УспеваемостьСтудентов
             foreach (var task in user.Tasks)
             {
                 //TODO Заменить подстановку данных на sqlite (защита от sql инъекций)
-                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
+                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'creation_date') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, false, {task.CreationDate}); ";
             }
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
