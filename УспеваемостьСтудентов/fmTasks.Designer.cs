@@ -164,6 +164,7 @@
             // 
             // cboFilterByStatus
             // 
+            this.cboFilterByStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboFilterByStatus.BackColor = System.Drawing.Color.White;
             this.cboFilterByStatus.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.cboFilterByStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -179,8 +180,8 @@
             // 
             // lvTasks
             // 
-            this.lvTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lvTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvTasks.BackColor = System.Drawing.Color.White;
             this.lvTasks.CheckBoxes = true;
@@ -203,6 +204,7 @@
             // 
             // cboFilterByType
             // 
+            this.cboFilterByType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboFilterByType.BackColor = System.Drawing.Color.White;
             this.cboFilterByType.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.cboFilterByType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -252,6 +254,7 @@
             // 
             // txtSearch
             // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtSearch.ForeColor = System.Drawing.Color.DodgerBlue;
             this.txtSearch.Location = new System.Drawing.Point(513, 50);
