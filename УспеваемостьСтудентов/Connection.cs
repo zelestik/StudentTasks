@@ -13,14 +13,16 @@ namespace StudentTasks
     class Connection
     {
         // Все методы класса возвращают строку с ответом на запрос или null - если возникла ошибка при подключении
-        public int Status { get; private set; } // Поле для отладки, статус -2 - проблемы при подключении, -1 - ошибка доступа, 1 - запрос был выполнен успешно
+        // Поле для отладки, -2 - проблемы при подключении, -1 - ошибка доступа, 1 - запрос был выполнен успешно
+        public int Status { get; private set; }
+        public string ExceptionMessage { get; private set; }
 
         // Метод получения JSON с сервера по адресу запроса (adr)
         public string GetJSON(string adr)
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://ip2020.std-982.ist.mospolytech.ru/" + adr); // http://localhost:5000/  
+                WebRequest request = WebRequest.Create("http://ip2020.std-913.ist.mospolytech.ru/" + adr);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream receiveStream = response.GetResponseStream();
                 string answer = new StreamReader(response.GetResponseStream()).ReadToEnd();
@@ -37,8 +39,8 @@ namespace StudentTasks
             }
             catch (Exception e)
             {
-                // Вывод ошибки сервера
-                MessageBox.Show(e.Message);
+                // Запись сообщения об ошибки для отладки
+                ExceptionMessage = e.Message;
                 Status = -2;
                 return null;
 
@@ -49,7 +51,7 @@ namespace StudentTasks
         {
             try
             {
-                WebRequest request = WebRequest.Create("http://ip2020.std-982.ist.mospolytech.ru/" + adr); // http://localhost:5000/ 
+                WebRequest request = WebRequest.Create("http://ip2020.std-913.ist.mospolytech.ru/" + adr);
                 request.Method = "POST";
                 string postData = str;
                 byte[] byteArray = Encoding.UTF8.GetBytes(postData);
@@ -73,8 +75,8 @@ namespace StudentTasks
             }
             catch(Exception e)
             {
-                // Вывод ошибки сервера
-                MessageBox.Show(e.Message);
+                // Запись сообщения об ошибки для отладки
+                ExceptionMessage = e.Message;
                 Status = -2;
                 return null;
 

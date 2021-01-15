@@ -86,7 +86,7 @@
             this.txtSubject.Location = new System.Drawing.Point(185, 9);
             this.txtSubject.MaxLength = 32;
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(185, 27);
+            this.txtSubject.Size = new System.Drawing.Size(285, 27);
             this.txtSubject.TabIndex = 4;
             // 
             // txtDescription
@@ -95,7 +95,7 @@
             this.txtDescription.Location = new System.Drawing.Point(185, 46);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(185, 81);
+            this.txtDescription.Size = new System.Drawing.Size(285, 81);
             this.txtDescription.TabIndex = 5;
             // 
             // cbType
@@ -105,7 +105,7 @@
             this.cbType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbType.Location = new System.Drawing.Point(185, 133);
             this.cbType.Name = "cbType";
-            this.cbType.Size = new System.Drawing.Size(185, 28);
+            this.cbType.Size = new System.Drawing.Size(285, 28);
             this.cbType.TabIndex = 8;
             // 
             // btnAdd
@@ -118,11 +118,11 @@
             this.btnAdd.ForeColor = System.Drawing.Color.DodgerBlue;
             this.btnAdd.Location = new System.Drawing.Point(0, 290);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(382, 63);
+            this.btnAdd.Size = new System.Drawing.Size(482, 63);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.buAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // cbIsGroup
             // 
@@ -140,7 +140,7 @@
             this.dateTimePickerExpiration.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerExpiration.Location = new System.Drawing.Point(185, 170);
             this.dateTimePickerExpiration.Name = "dateTimePickerExpiration";
-            this.dateTimePickerExpiration.Size = new System.Drawing.Size(185, 28);
+            this.dateTimePickerExpiration.Size = new System.Drawing.Size(285, 28);
             this.dateTimePickerExpiration.TabIndex = 11;
             // 
             // fmNewTask
@@ -148,7 +148,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
-            this.ClientSize = new System.Drawing.Size(382, 353);
+            this.ClientSize = new System.Drawing.Size(482, 353);
             this.Controls.Add(this.dateTimePickerExpiration);
             this.Controls.Add(this.cbIsGroup);
             this.Controls.Add(this.btnAdd);
@@ -161,8 +161,8 @@
             this.Controls.Add(this.laSubject);
             this.Font = new System.Drawing.Font("Gilroy ExtraBold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.White;
-            this.MaximumSize = new System.Drawing.Size(400, 400);
-            this.MinimumSize = new System.Drawing.Size(400, 400);
+            this.MaximumSize = new System.Drawing.Size(500, 400);
+            this.MinimumSize = new System.Drawing.Size(500, 400);
             this.Name = "fmNewTask";
             this.Opacity = 0.95D;
             this.Text = "Новая задача";

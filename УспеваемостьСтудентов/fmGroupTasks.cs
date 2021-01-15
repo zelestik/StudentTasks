@@ -69,7 +69,7 @@ namespace StudentTasks
             }
         }
 
-        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void lvGroupTasks_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // Если есть отмеченные элементы - отображаются кнопки переноса задач, иначе скрываются
             var isChecked = false;

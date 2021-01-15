@@ -50,7 +50,7 @@
             this.lvGroupTasks.TabIndex = 1;
             this.lvGroupTasks.UseCompatibleStateImageBehavior = false;
             this.lvGroupTasks.View = System.Windows.Forms.View.Details;
-            this.lvGroupTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
+            this.lvGroupTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvGroupTasks_ItemChecked);
             // 
             // btnToPersonal
             // 

@@ -11,8 +11,8 @@ namespace StudentTasks
 {
     public class TaskCreator
     {
-
-        // Если методы класса возвращают null - причина записана в Status, -2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
+        // Если методы класса возвращают null - причина записана в Status, 
+        //-2 - ошибка подключения к серверу, -1 ошибка доступа (неверный логин/пароль), 1 - успешно.
         public int Status { get; private set; }
 
         public List<Task> GetTasksOnline(string username, string password) // Получить задачи с сервера
@@ -35,7 +35,9 @@ namespace StudentTasks
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
             }
-            else // Иначе записываем статус. Если у пользователя просто нет задач - возвращаем пустой список. Иначе возвращаем null.
+            // Иначе записываем статус. Если у пользователя просто нет задач - возвращаем пустой список. 
+            //Иначе возвращаем null.
+            else
             {
                 Status = con.Status;
                 if (Status == 0)
@@ -69,7 +71,8 @@ namespace StudentTasks
                 var tasks = js.Deserialize<List<Task>>(jr);
                 return tasks;
             }
-            else // Иначе записываем статус. Если у группы просто нет задач - возвращаем пустой список. Иначе возвращаем null.
+            // Иначе записываем статус. Если у группы просто нет задач - возвращаем пустой список. Иначе возвращаем null.
+            else
             {
                 Status = con.Status;
                 if (Status == 0)

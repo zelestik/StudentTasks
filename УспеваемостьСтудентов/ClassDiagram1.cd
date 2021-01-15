@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="StudentTasks.AnswerUser">
+    <Position X="9.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AnswerUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.Connection">
+    <Position X="12.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAQCAAAAAA=</HashCode>
+      <FileName>Connection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmAbout" Collapsed="true">
+    <Position X="8.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAACAAAAAAQACAAgACAAAAAAAAAAAAAAAQAAQ=</HashCode>
+      <FileName>fmAbout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmGroupTasks" Collapsed="true">
+    <Position X="7.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAIAAACARAAGAAACAAAACAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>fmGroupTasks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmLogin" Collapsed="true">
+    <Position X="7" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAABAAACgEABAQkASAQIECAAAICAAIAEAgAABAAAA=</HashCode>
+      <FileName>fmLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmLoginHistory" Collapsed="true">
+    <Position X="16.5" Y="9" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAEACAAAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>fmLoginHistory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmNewTask" Collapsed="true">
+    <Position X="15.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CEARAIBAgCAAAAAAAACBAAACAAAAgAAAAAEAAAAAAAI=</HashCode>
+      <FileName>fmNewTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmRegistration" Collapsed="true">
+    <Position X="14.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAACAAABAAAACAAAACAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>fmRegistration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmSelectedItem" Collapsed="true">
+    <Position X="18.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQEBAIAAACAAAAAAAACAAAACAAAAABAAAEEAAAIAAAA=</HashCode>
+      <FileName>fmSelectedItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.fmTasks" Collapsed="true">
+    <Position X="14" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAIAAACASCBACBACBABACAAMAAABAIAAAAIACAAA=</HashCode>
+      <FileName>fmTasks.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.ListViewColumnSorter" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="2.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAIAAAAAAAAAAAAAAAAAgABBAAAABAAAAAAAA=</HashCode>
+      <FileName>ListViewColumnSorter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="StudentTasks.LocalDB">
+    <Position X="10.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAgACBAAAABAAAAAAAAACAAAACAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>LocalDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.OfflineUser">
+    <Position X="5.25" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OfflineUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.OnlineUser">
+    <Position X="8" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAABAAAAEAAAAAQAAAAAAAACAAAAAAAAAAE=</HashCode>
+      <FileName>OnlineUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.Program" Collapsed="true">
+    <Position X="11.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.Task">
+    <Position X="13.5" Y="2.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAACAEAEAAAgRAAAgAAAAAQAQAAgABAAAQIAAAAIAAA=</HashCode>
+      <FileName>Task.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.TaskCreator">
+    <Position X="15.25" Y="0.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAEAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAA=</HashCode>
+      <FileName>TaskCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.User">
+    <Position X="6.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.Properties.Resources" Collapsed="true">
+    <Position X="17" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StudentTasks.Properties.Settings" Collapsed="true">
+    <Position X="14.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -27,25 +27,29 @@ namespace StudentTasks
             cbType.SelectedIndex = 1;
             if (User is OnlineUser u)
             {
-                if (u.Role != 1) //Если не староста - убираем checkBox групповой задачи
+                //Если не староста - убираем checkBox групповой задачи
+                if (u.Role != 1) 
                 {
                     cbIsGroup.Checked = false;
                     cbIsGroup.Hide();
                 }
             }
-            else //Если не онлайн режим - убираем checkBox групповой задачи
+            //Если не онлайн режим - убираем checkBox групповой задачи
+            else
             {
                 cbIsGroup.Checked = false;
                 cbIsGroup.Hide();
             }
         }
 
-        private void buAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
             // Формируем дату числом формата YYYYMMDD
-            int intExpirationDate = dateTimePickerExpiration.Value.Year * 10000 + dateTimePickerExpiration.Value.Month * 100 + dateTimePickerExpiration.Value.Day;
+            int intExpirationDate = dateTimePickerExpiration.Value.Year * 10000 
+                + dateTimePickerExpiration.Value.Month * 100 + dateTimePickerExpiration.Value.Day;
             int intCurrentDate = DateTime.Today.Year * 10000 + DateTime.Today.Month * 100 + DateTime.Today.Day;
-            var task = new Task(0, txtDescription.Text, intExpirationDate, txtSubject.Text, 0, cbType.SelectedIndex, "Создано", cbType.SelectedItem.ToString(), intCurrentDate, false);
+            var task = new Task(0, txtDescription.Text, intExpirationDate, txtSubject.Text, 0, 
+                cbType.SelectedIndex, "Создано", cbType.SelectedItem.ToString(), intCurrentDate, false);
             string res = "-3";
             if (User is OnlineUser u) // В зависимости от типа пользователя (онлайн оффлайн) определяется механизм записи задачи
                 res = task.SendToServer(u.Username, u.Password, cbIsGroup.Checked);
@@ -53,11 +57,12 @@ namespace StudentTasks
                 res = task.SendToLocal();
             if (res == "0") // Если успешный ответ
             {
-                MessageBox.Show("Успешно");
+                MessageBox.Show("Задача добавлена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
             else
-                MessageBox.Show("Возникла ошибка при сохранении данных " + res);
+                MessageBox.Show("Возникла ошибка при сохранении данных " + res,
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }

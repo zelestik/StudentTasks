@@ -24,7 +24,7 @@ namespace StudentTasks
             cbStatus.Items.Add("Сделано");
             if (item.Tag is Task task) // Если в тэге элемента записана задача
             {
-                if (User is OnlineUser u && u.Role == 2) // У админов скрывается комбобокс со статусами
+                if (User is OnlineUser u && u.Role == 2) // У администраторов скрывается комбобокс со статусами
                     cbStatus.Hide();
                 Task = task; // Записываем задачу в свойство класса
                 cbStatus.SelectedIndex = Convert.ToInt32(task.IdStatus); // Отметка статуса по ID статуса из задачи
@@ -43,24 +43,24 @@ namespace StudentTasks
 
 
 
-        private void buSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             string res = "";
-            if (User is OnlineUser u) // Определяем тип пользователя (онлайн/оффлайн) для определения механизма работы
+            // Определяем тип пользователя (онлайн/оффлайн) для определения механизма работы
+            if (User is OnlineUser u)
                 res = Task.UpdateOnServer(u.Username, u.Password);
             else
                 //res = Task.UpdateOnLocal();
             if (res == "0") // Если успешно
             {
-                MessageBox.Show("Успешно");
+                MessageBox.Show("Задача сохранена", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
             else
             {
-                MessageBox.Show("Возникла ошибка при сохранении данных " + res);
+                MessageBox.Show("Возникла ошибка при сохранении данных " + res,
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            // TODO
-            // Обработка сохранения изменений
         }
 
         private void cbStatus_SelectedIndexChanged(object sender, EventArgs e)

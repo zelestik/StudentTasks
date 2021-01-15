@@ -72,7 +72,8 @@ namespace StudentTasks
                 return con.PostJSON($"post_tasks/{username}/{password}", output);
         }
 
-        internal string UpdateOnLocal() // На данный момент не реализованный метод возвращает "", в будущем будет использоваться для обновления информации о задаче в клиентской БД
+        // На данный момент не реализованный метод возвращает "", в будущем будет использоваться для обновления информации о задаче в клиентской БД
+        internal string UpdateOnLocal() 
         {
             string res = "";
             var db = new LocalDB();

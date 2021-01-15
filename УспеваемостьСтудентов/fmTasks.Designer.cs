@@ -45,6 +45,8 @@
             this.btnToWork = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnImport = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@
             this.btnRefresh.TabIndex = 2;
             this.btnRefresh.Text = "Обновить";
             this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.buRefresh_Click);
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnAboutMe
             // 
@@ -126,7 +128,7 @@
             this.btnAboutMe.TabIndex = 3;
             this.btnAboutMe.Text = "Обо мне";
             this.btnAboutMe.UseVisualStyleBackColor = false;
-            this.btnAboutMe.Click += new System.EventHandler(this.buAboutMe_Click);
+            this.btnAboutMe.Click += new System.EventHandler(this.btnAboutMe_Click);
             // 
             // btnNewTask
             // 
@@ -136,14 +138,14 @@
             this.btnNewTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNewTask.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNewTask.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.btnNewTask.Location = new System.Drawing.Point(877, 8);
+            this.btnNewTask.Location = new System.Drawing.Point(837, 8);
             this.btnNewTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnNewTask.Name = "btnNewTask";
-            this.btnNewTask.Size = new System.Drawing.Size(168, 34);
+            this.btnNewTask.Size = new System.Drawing.Size(208, 34);
             this.btnNewTask.TabIndex = 4;
             this.btnNewTask.Text = "Новая задача";
             this.btnNewTask.UseVisualStyleBackColor = false;
-            this.btnNewTask.Click += new System.EventHandler(this.buNewTask_Click);
+            this.btnNewTask.Click += new System.EventHandler(this.btnNewTask_Click);
             // 
             // btnGroupTasks
             // 
@@ -153,14 +155,14 @@
             this.btnGroupTasks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGroupTasks.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnGroupTasks.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.btnGroupTasks.Location = new System.Drawing.Point(703, 8);
+            this.btnGroupTasks.Location = new System.Drawing.Point(623, 8);
             this.btnGroupTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGroupTasks.Name = "btnGroupTasks";
-            this.btnGroupTasks.Size = new System.Drawing.Size(168, 34);
+            this.btnGroupTasks.Size = new System.Drawing.Size(208, 34);
             this.btnGroupTasks.TabIndex = 5;
             this.btnGroupTasks.Text = "Задачи группы";
             this.btnGroupTasks.UseVisualStyleBackColor = false;
-            this.btnGroupTasks.Click += new System.EventHandler(this.buGroupTasks_Click);
+            this.btnGroupTasks.Click += new System.EventHandler(this.btnGroupTasks_Click);
             // 
             // cboFilterByStatus
             // 
@@ -172,11 +174,11 @@
             this.cboFilterByStatus.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cboFilterByStatus.ForeColor = System.Drawing.Color.DodgerBlue;
             this.cboFilterByStatus.FormattingEnabled = true;
-            this.cboFilterByStatus.Location = new System.Drawing.Point(877, 50);
+            this.cboFilterByStatus.Location = new System.Drawing.Point(837, 50);
             this.cboFilterByStatus.Name = "cboFilterByStatus";
-            this.cboFilterByStatus.Size = new System.Drawing.Size(168, 28);
+            this.cboFilterByStatus.Size = new System.Drawing.Size(208, 28);
             this.cboFilterByStatus.TabIndex = 6;
-            this.cboFilterByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cboFilterByStatus.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // lvTasks
             // 
@@ -198,9 +200,9 @@
             this.lvTasks.TabIndex = 0;
             this.lvTasks.UseCompatibleStateImageBehavior = false;
             this.lvTasks.View = System.Windows.Forms.View.Details;
-            this.lvTasks.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);
-            this.lvTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.listView1_ItemChecked);
-            this.lvTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ListView1_Click);
+            this.lvTasks.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvTasks_ColumnClick);
+            this.lvTasks.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.lvTasks_ItemChecked);
+            this.lvTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lvTasks_Click);
             // 
             // cboFilterByType
             // 
@@ -212,11 +214,11 @@
             this.cboFilterByType.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cboFilterByType.ForeColor = System.Drawing.Color.DodgerBlue;
             this.cboFilterByType.FormattingEnabled = true;
-            this.cboFilterByType.Location = new System.Drawing.Point(703, 50);
+            this.cboFilterByType.Location = new System.Drawing.Point(623, 50);
             this.cboFilterByType.Name = "cboFilterByType";
-            this.cboFilterByType.Size = new System.Drawing.Size(168, 28);
+            this.cboFilterByType.Size = new System.Drawing.Size(208, 28);
             this.cboFilterByType.TabIndex = 7;
-            this.cboFilterByType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cboFilterByType.SelectedIndexChanged += new System.EventHandler(this.comboBox_SelectedIndexChanged);
             // 
             // btnToWork
             // 
@@ -254,14 +256,41 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSearch.Font = new System.Drawing.Font("Gilroy Light", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.txtSearch.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.txtSearch.Location = new System.Drawing.Point(513, 50);
+            this.txtSearch.Location = new System.Drawing.Point(91, 56);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(184, 27);
             this.txtSearch.TabIndex = 10;
-            this.txtSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(14, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 21);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Поиск";
+            // 
+            // btnImport
+            // 
+            this.btnImport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImport.BackColor = System.Drawing.Color.White;
+            this.btnImport.FlatAppearance.BorderSize = 0;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnImport.Font = new System.Drawing.Font("Gilroy ExtraBold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnImport.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnImport.Location = new System.Drawing.Point(765, 46);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(280, 34);
+            this.btnImport.TabIndex = 12;
+            this.btnImport.Text = "Ипортировать пользователей";
+            this.btnImport.UseVisualStyleBackColor = false;
+            this.btnImport.Visible = false;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // fmTasks
             // 
@@ -269,6 +298,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(1182, 567);
+            this.Controls.Add(this.btnImport);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnToWork);
@@ -311,5 +342,7 @@
         private System.Windows.Forms.Button btnToWork;
         private System.Windows.Forms.Button btnDone;
         private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnImport;
     }
 }

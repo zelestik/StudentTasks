@@ -10,7 +10,6 @@ using System.Data.SQLite;
 
 namespace StudentTasks
 {
-
     class LocalDB
     {
         private string dbFileName = @"localDB.sqlite3";
@@ -55,12 +54,24 @@ namespace StudentTasks
                     is_group boolean default false not null,
                     creation_date integer default 0 not null
                 );
-                INSERT INTO task_types(id,name) SELECT 0, 'Другое' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 0 AND name = 'Другое');
-                INSERT INTO task_types(id,name) SELECT 1, 'Домашнее задание' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 1 AND name = 'Домашнее задание');
-                INSERT INTO task_types(id,name) SELECT 2, 'Лабораторная работа' WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 2 AND name = 'Лабораторная работа');
-                INSERT INTO statuses(id,name) SELECT 0, 'Создано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 0 AND name = 'Создано');
-                INSERT INTO statuses(id,name) SELECT 1, 'В работе' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 1 AND name = 'В работе');
-                INSERT INTO statuses(id,name) SELECT 2, 'Сделано' WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 2 AND name = 'Сделано');";
+                INSERT INTO task_types(id,name) 
+                    SELECT 0, 'Другое' 
+                        WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 0 AND name = 'Другое');
+                INSERT INTO task_types(id,name) 
+                    SELECT 1, 'Домашнее задание' 
+                        WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 1 AND name = 'Домашнее задание');
+                INSERT INTO task_types(id,name) 
+                    SELECT 2, 'Лабораторная работа' 
+                        WHERE NOT EXISTS(SELECT 1 FROM task_types WHERE id = 2 AND name = 'Лабораторная работа');
+                INSERT INTO statuses(id,name) 
+                    SELECT 0, 'Создано' 
+                        WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 0 AND name = 'Создано');
+                INSERT INTO statuses(id,name) 
+                    SELECT 1, 'В работе' 
+                        WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 1 AND name = 'В работе');
+                INSERT INTO statuses(id,name) 
+                    SELECT 2, 'Сделано' 
+                        WHERE NOT EXISTS(SELECT 1 FROM statuses WHERE id = 2 AND name = 'Сделано');";
                     SQLiteCommand command = new SQLiteCommand(sql, sqlite);
                     command.ExecuteNonQuery();
                 }
@@ -79,7 +90,9 @@ namespace StudentTasks
         public List<Task> LoadTasks() // Загрузка задач из БД
         {
             // Запрос на получение задач
-            var sql = "SELECT tasks.id as id, description, expiration_date, tasks.name, id_status, id_type, statuses.name as status, task_types.name as task_type, creation_date, is_group FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
+            var sql = "SELECT tasks.id as id, description, expiration_date, tasks.name, " +
+                "id_status, id_type, statuses.name as status, task_types.name as task_type, creation_date, is_group " +
+                "FROM tasks, task_types, statuses where id_status = statuses.id and id_type = task_types.id";
             var tasks = new List<Task>();
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
@@ -92,7 +105,11 @@ namespace StudentTasks
                         while (reader.Read())
                         {
                             // Добавляем задачи из результатов запроса
-                            Task task = new Task((long)reader["id"], (string)reader["description"], (long)reader["expiration_date"], (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], (string)reader["status"], (string)reader["task_type"], (long)reader["creation_date"], (bool)reader["is_group"]);
+                            Task task = new Task(
+                                (long)reader["id"], (string)reader["description"], (long)reader["expiration_date"], 
+                                (string)reader["name"], (long)reader["id_status"], (long)reader["id_type"], 
+                                (string)reader["status"], (string)reader["task_type"], 
+                                (long)reader["creation_date"], (bool)reader["is_group"]);
                             tasks.Add(task);
                         }
                     }
@@ -113,7 +130,10 @@ namespace StudentTasks
             var sql = "DELETE FROM tasks; ";
             foreach (var task in user.Tasks)
             {
-                sql += $"INSERT INTO 'tasks' ('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'creation_date') VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, false, {task.CreationDate}); ";
+                sql += $"INSERT INTO 'tasks' " +
+                    $"('id', 'name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed', 'creation_date') " +
+                    $"VALUES ({task.Id}, '{task.Name}', '{task.Description}', {task.ExpirationDate}, " +
+                    $"{task.IdStatus}, {task.IdType}, false, {task.CreationDate}); ";
             }
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
@@ -136,7 +156,9 @@ namespace StudentTasks
 
         public int AddTask(Task task) // Добавление новой задачи
         {
-            var sql = $"INSERT INTO 'tasks' ('name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') VALUES ('{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
+            var sql = $"INSERT INTO 'tasks' " +
+                $"('name', 'description', 'expiration_date', 'id_status', 'id_type', 'is_changed') " +
+                $"VALUES ('{task.Name}', '{task.Description}', {task.ExpirationDate}, {task.IdStatus}, {task.IdType}, 0); ";
             using (var con = new SQLiteConnection("Data source =" + dbFileName))
             {
                 try

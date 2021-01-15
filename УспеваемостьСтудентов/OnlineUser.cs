@@ -30,7 +30,9 @@ namespace StudentTasks
             var con = new Connection(); // Создаём экземпляр класса для выполнения подключения
             try
             {
-                connection_answer = con.GetJSON("login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString); //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
+                //Вызов метода get класса Connection, в случае успеха будет получена строка JSON с данными о пользователе
+                connection_answer = con.GetJSON(
+                    "login/" + Username + "/" + Password + "/" + OS.Platform.ToString() + "/" + OS.VersionString);
             }
             catch (Exception e)
             {

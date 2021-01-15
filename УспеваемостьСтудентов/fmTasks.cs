@@ -9,6 +9,8 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.Xml;
 
 namespace StudentTasks
 {
@@ -16,6 +18,7 @@ namespace StudentTasks
     {
         public User User { get; private set; }
         private ListViewColumnSorter lvwColumnSorter;
+        public int countAddedUsers = 0;
         public fmTasks(User user)
         {
             InitializeComponent();
@@ -31,6 +34,7 @@ namespace StudentTasks
                     cboFilterByStatus.Hide();
                     cboFilterByType.Hide();
                     lvTasks.CheckBoxes = false;
+                    btnImport.Visible = true;
                 }
                 if (u.Group == null) // Если не пользователь не состоит в группе - скрывае кнопку перехода в групповые задачи
                     btnGroupTasks.Hide();
@@ -44,7 +48,7 @@ namespace StudentTasks
             }
             lvTasks.FullRowSelect = true;
             RefreshTasks();
-            listView1_ColumnClick(lvTasks, new ColumnClickEventArgs(2));
+            lvTasks_ColumnClick(lvTasks, new ColumnClickEventArgs(2));
             // Заполнение комбоксов фильтров
             cboFilterByStatus.Items.Add("Все статусы");
             cboFilterByStatus.Items.Add("Созданные");
@@ -54,11 +58,12 @@ namespace StudentTasks
             cboFilterByStatus.SelectedIndex = 4;
             cboFilterByType.Items.Add("Все типы задач");
             cboFilterByType.Items.Add("Другие");
-            cboFilterByType.Items.Add("Домашние задания");
             cboFilterByType.Items.Add("Лабораторные работы");
+            cboFilterByType.Items.Add("Домашние задания");
             cboFilterByType.SelectedIndex = 0;
 
         }
+        // Обновление списка задач
         private void RefreshTasks()
         {
             if (User is OnlineUser u_on) // Определение типа пользователя (онлайн/оффлайн)
@@ -70,6 +75,7 @@ namespace StudentTasks
             btnToWork.Visible = false;
             btnDone.Visible = false;
         }
+        // Обновление ListView
         private void RefreshList()
         {
             lvTasks.Clear();
@@ -133,7 +139,10 @@ namespace StudentTasks
             }
             else if (User.Tasks is null) // Если при получении задач получили Null - возникла ошибка при получении данных
             {
-                MessageBox.Show("Возникла ошибка при получении списка задач, проверьте подключение к интернету и доступность сервера, приложение будет закрыто");
+                MessageBox.Show(
+                    "Возникла ошибка при получении списка задач, " +
+                    "проверьте подключение к интернету и доступность сервера, приложение будет закрыто",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             else // Если задач нет
@@ -144,7 +153,7 @@ namespace StudentTasks
                 lvTasks.Items.Add(item);
             }
         }
-        private void ListView1_Click(object sender, MouseEventArgs e) // Выбор задачи
+        private void lvTasks_Click(object sender, MouseEventArgs e) // Выбор задачи
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -161,7 +170,8 @@ namespace StudentTasks
             // При закрытии формы предлагается сохранить задачи в локальную БД (если не оффлайн пользователь и не алминистратор)
             if (User is OnlineUser u && u.Role != 2) //Если онлайн пользователь и не админ
             {
-                var res = MessageBox.Show("Сохранить задачи на компьютер? \nВы сможете продолжить работу оффлайн", "Подтвердите действие", MessageBoxButtons.YesNo);
+                var res = MessageBox.Show("Сохранить задачи на компьютер? \nВы сможете продолжить работу оффлайн", 
+                    "Подтвердите действие", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
                     var db = new LocalDB();
@@ -173,12 +183,12 @@ namespace StudentTasks
             Application.Exit();
         }
 
-        private void buRefresh_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshTasks();
         }
 
-        private void buAboutMe_Click(object sender, EventArgs e) 
+        private void btnAboutMe_Click(object sender, EventArgs e) 
         {
             // Форма "Обо мне" доступна только онлайн пользователям
             if (User is OnlineUser u)
@@ -188,13 +198,13 @@ namespace StudentTasks
             }
         }
 
-        private void buNewTask_Click(object sender, EventArgs e)
+        private void btnNewTask_Click(object sender, EventArgs e)
         {
             Form fm = new fmNewTask(User);
             fm.Show();
         }
 
-        private void buGroupTasks_Click(object sender, EventArgs e)
+        private void btnGroupTasks_Click(object sender, EventArgs e)
         {
             // Форма с групповыми задачами доступна только онлайн пользователям, прикрепленным к группе
             if (User is OnlineUser u && u.Group != null)
@@ -204,7 +214,7 @@ namespace StudentTasks
             }
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // При смене фильтра - обновление списка (только перерисовка списка, без обращения к серверу)
             RefreshList();
@@ -226,7 +236,7 @@ namespace StudentTasks
             }
         }
 
-        private void listView1_ItemChecked(object sender, ItemCheckedEventArgs e)
+        private void lvTasks_ItemChecked(object sender, ItemCheckedEventArgs e)
         {
             // Если есть отмеченные элементы - отображаются кнопки смены статусы для задач, иначе скрываются
             var isChecked = false;
@@ -260,7 +270,7 @@ namespace StudentTasks
             }
         }
 
-        private void tbSearch_TextChanged(object sender, EventArgs e)
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             // Обновляем список при изменении запроса поиска (только перерисовка списка, без обращения к серверу)
             RefreshList();
@@ -268,7 +278,7 @@ namespace StudentTasks
 
         // Данный метод сортировки listview предоставлен компанией Microsoft и не был изменён
         // Подробнее на https://support.microsoft.com/en-us/help/319401/how-to-sort-a-listview-control-by-a-column-in-visual-c
-        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void lvTasks_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == lvwColumnSorter.SortColumn)
@@ -292,6 +302,101 @@ namespace StudentTasks
 
             // Perform the sort with these new sort options.
             lvTasks.Sort();
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            var countUsers = 0;
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "csv files (*.csv)|*.csv|xml files (*.xml)|*.xml";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = openFileDialog.FileName;
+
+                    var fileStream = openFileDialog.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+                    }
+                }
+            }
+            fileContent.Replace("\r", "");
+            var strArray = fileContent.Split('\n');
+            if (strArray.Length > 1)
+            {
+                var header = strArray[0].Split('/');
+                if (header.Length >= 4 && header[0] == "Имя" && header[1] == "Фамилия" && header[2] == "Email" && header[3] == "Пароль" && header[4] == "Логин" && header[5] == "Роль\r")
+                {
+                    for (int i = 1; i < strArray.Length; i++)
+                    {
+                        countUsers++;
+                        var curStr = strArray[i].Split('/');
+                        if (curStr.Length >= 6)
+                        {
+                            var idRole = 0;
+                            Int32.TryParse(curStr[5], out idRole);
+                            if (curStr[1] != "" && curStr[2] != "" && curStr[3] != "" && curStr[4] != "")
+                            {
+                                var con = new Connection();
+                                con.GetJSON("check_email_login/" + curStr[4] + "/" + curStr[2]);
+                                if (con.Status == 0) 
+                                {
+                                    try
+                                    {
+                                        var user = new UserToAdd(curStr[0], curStr[1], curStr[2], curStr[4], curStr[3], int.Parse(curStr[5]));
+                                        string json = JsonSerializer.Serialize(user);
+                                        MessageBox.Show(json);
+                                        countAddedUsers++;
+                                        con.PostJSON("reg", json);
+                                        MessageBox.Show(con.Status.ToString());
+                                    }
+                                    catch(Exception ex)
+                                    {
+                                        MessageBox.Show(ex.Message);
+                                    }
+                                }
+                                else
+                                {
+                                    if (con.Status == 1)
+                                    {
+                                        curStr[4] = "";
+                                    }
+                                    else if (con.Status == 2)
+                                    {
+                                        curStr[2] = "";
+                                    }
+                                    else if (con.Status == 3)
+                                    {
+                                        curStr[2] = "";
+                                        curStr[4] = "";
+                                    }
+                                    var fm = new fmCorrectUserData(curStr[0], curStr[1], curStr[2], curStr[3], curStr[4], idRole, this);
+                                    var dialog = fm.ShowDialog();
+                                }
+                            }
+                            else
+                            {
+                                var fm = new fmCorrectUserData(curStr[0], curStr[1], curStr[2], curStr[3], curStr[4], idRole, this);
+                                var dialog = fm.ShowDialog();
+                            }
+                        }
+                    }
+                    MessageBox.Show("Из " + countUsers + " пользователей было добавлено " + countAddedUsers);
+                }
+                else
+                    MessageBox.Show("Файл не соответствует формату");
+            }
+            else
+                MessageBox.Show("Файл не соответствует формату");
         }
     }
 }
