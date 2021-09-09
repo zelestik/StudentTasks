@@ -41,6 +41,7 @@ namespace StudentTasks
             this.btnAdd = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.btnSaveAbsolute = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtSecondName
@@ -145,11 +146,23 @@ namespace StudentTasks
             this.txtFirstName.Size = new System.Drawing.Size(100, 22);
             this.txtFirstName.TabIndex = 10;
             // 
+            // btnSaveAbsolute
+            // 
+            this.btnSaveAbsolute.ForeColor = System.Drawing.Color.Red;
+            this.btnSaveAbsolute.Location = new System.Drawing.Point(369, 415);
+            this.btnSaveAbsolute.Name = "btnSaveAbsolute";
+            this.btnSaveAbsolute.Size = new System.Drawing.Size(220, 23);
+            this.btnSaveAbsolute.TabIndex = 12;
+            this.btnSaveAbsolute.Text = "Принудительное сохранение";
+            this.btnSaveAbsolute.UseVisualStyleBackColor = true;
+            this.btnSaveAbsolute.Click += new System.EventHandler(this.btnSaveAbsolute_Click);
+            // 
             // fmCorrectUserData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSaveAbsolute);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.btnAdd);
@@ -164,6 +177,7 @@ namespace StudentTasks
             this.Controls.Add(this.txtSecondName);
             this.Name = "fmCorrectUserData";
             this.Text = "fmCorrectUserData";
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.fmCorrectUserData_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,5 +197,6 @@ namespace StudentTasks
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Button btnSaveAbsolute;
     }
 }

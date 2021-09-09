@@ -14,59 +14,59 @@
       <FileName>Connection.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmAbout" Collapsed="true">
-    <Position X="8.75" Y="8.75" Width="1.5" />
+  <Class Name="StudentTasks.fmAbout">
+    <Position X="12.25" Y="7.25" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAACAAAAAAQACAAgACAAAAAAAAAAAAAAAQAAQ=</HashCode>
       <FileName>fmAbout.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmGroupTasks" Collapsed="true">
-    <Position X="7.25" Y="9.5" Width="1.5" />
+  <Class Name="StudentTasks.fmGroupTasks">
+    <Position X="7" Y="6" Width="4.75" />
     <TypeIdentifier>
       <HashCode>AAABAIAAACARAAGAAACAAAACAAAAAAAAAAAIAAAAAAA=</HashCode>
       <FileName>fmGroupTasks.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmLogin" Collapsed="true">
-    <Position X="7" Y="8.75" Width="1.5" />
+  <Class Name="StudentTasks.fmLogin">
+    <Position X="1.75" Y="4.25" Width="4.25" />
     <TypeIdentifier>
-      <HashCode>AQAAABAAACgEABAQkASAQIECAAAICAAIAEAgAABAAAA=</HashCode>
+      <HashCode>AQAAABAAACgEABAQkASAQIECAACACAEIgAAgAAhAAEA=</HashCode>
       <FileName>fmLogin.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmLoginHistory" Collapsed="true">
-    <Position X="16.5" Y="9" Width="2.25" />
+  <Class Name="StudentTasks.fmLoginHistory">
+    <Position X="16.5" Y="5.75" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAEACAAAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>fmLoginHistory.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmNewTask" Collapsed="true">
-    <Position X="15.5" Y="8.5" Width="1.5" />
+  <Class Name="StudentTasks.fmNewTask">
+    <Position X="20" Y="3" Width="3" />
     <TypeIdentifier>
       <HashCode>CEARAIBAgCAAAAAAAACBAAACAAAAgAAAAAEAAAAAAAI=</HashCode>
       <FileName>fmNewTask.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmRegistration" Collapsed="true">
-    <Position X="14.25" Y="9" Width="1.5" />
+  <Class Name="StudentTasks.fmRegistration">
+    <Position X="14.25" Y="10.75" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAACAAABAAAACAAAACAAAAACAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAoAAAAQACAAEBAAAACAAAQCAAAAAKAAIAAAAAAAAAA=</HashCode>
       <FileName>fmRegistration.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmSelectedItem" Collapsed="true">
-    <Position X="18.5" Y="8.75" Width="1.5" />
+  <Class Name="StudentTasks.fmSelectedItem">
+    <Position X="18.75" Y="10.75" Width="4.5" />
     <TypeIdentifier>
       <HashCode>AQEBAIAAACAAAAAAAACAAAACAAAAABAAAEEAAAIAAAA=</HashCode>
       <FileName>fmSelectedItem.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.fmTasks" Collapsed="true">
-    <Position X="14" Y="8.75" Width="1.5" />
+  <Class Name="StudentTasks.fmTasks">
+    <Position X="6.25" Y="10" Width="4.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAIAAACASCBACBACBABACAAMAAABAIAAAAIACAAA=</HashCode>
+      <HashCode>AAIBAJAAAGQTKBACBACBYBJCAgMBBIBBIAAAAIAKEAQ=</HashCode>
       <FileName>fmTasks.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -99,8 +99,8 @@
       <FileName>OnlineUser.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.Program" Collapsed="true">
-    <Position X="11.25" Y="9.25" Width="1.5" />
+  <Class Name="StudentTasks.Program">
+    <Position X="21.5" Y="8.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAEA=</HashCode>
       <FileName>Program.cs</FileName>
@@ -127,14 +127,14 @@
       <FileName>User.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.Properties.Resources" Collapsed="true">
-    <Position X="17" Y="7.75" Width="1.5" />
+  <Class Name="StudentTasks.Properties.Resources">
+    <Position X="15.75" Y="8.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="StudentTasks.Properties.Settings" Collapsed="true">
-    <Position X="14.5" Y="8.25" Width="1.5" />
+  <Class Name="StudentTasks.Properties.Settings">
+    <Position X="11" Y="10.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
     </TypeIdentifier>

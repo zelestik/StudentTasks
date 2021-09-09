@@ -306,7 +306,6 @@ namespace StudentTasks
 
         private void btnImport_Click(object sender, EventArgs e)
         {
-            var countUsers = 0;
             var fileContent = string.Empty;
             var filePath = string.Empty;
 
@@ -320,20 +319,122 @@ namespace StudentTasks
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
-
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
+                    try
                     {
-                        fileContent = reader.ReadToEnd();
+                        var fileStream = openFileDialog.OpenFile();
+
+                        using (StreamReader reader = new StreamReader(fileStream))
+                        {
+                            fileContent = reader.ReadToEnd();
+                        }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Ошибка чтения файла. Возможно файл используется другой программой", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
+            if (filePath.EndsWith(".csv"))
+                ImportFromCSV(fileContent);
+            else if (filePath.EndsWith(".xml"))
+                ImportFromXML(fileContent);
+        }
+
+        private void ImportFromXML(string fileContent)
+        {
+            var countUsers = 0;
+            XmlDocument xDoc = new XmlDocument();
+            xDoc.LoadXml(fileContent);
+            // получим корневой элемент
+            XmlElement xRoot = xDoc.DocumentElement;
+            // обход всех узлов в корневом элементе
+            foreach (XmlNode xnode in xRoot)
+            {
+                countUsers++;
+                string name = string.Empty;
+                string surname = string.Empty;
+                string email = string.Empty;
+                string password = string.Empty;
+                string login = string.Empty;
+                string role = string.Empty;
+                // обходим все дочерние узлы элемента user
+                foreach (XmlNode childnode in xnode.ChildNodes)
+                {
+                    
+                    if (childnode.Name == "Имя")
+                        name = childnode.InnerText;
+                    if (childnode.Name == "Фамилия")
+                        surname = childnode.InnerText;
+                    if (childnode.Name == "Email")
+                        email = childnode.InnerText;
+                    if (childnode.Name == "Пароль")
+                        password = childnode.InnerText;
+                    if (childnode.Name == "Логин")
+                        login = childnode.InnerText;
+                    if (childnode.Name == "Роль")
+                        role = childnode.InnerText;
+                }
+                if (surname != string.Empty && email != string.Empty && password != string.Empty && login != string.Empty)
+                {
+                    var con = new Connection();
+                    con.GetJSON("check_email_login/" + login + "/" + email); // Проверка наличия данных login и email в БД
+                    int idRole = 0;
+                    int.TryParse(role, out idRole);
+                    if (con.Status == 0)
+                    {
+                        try
+                        {
+                            var user = new UserToAdd(name, surname, email, login, password, idRole);
+                            string json = JsonSerializer.Serialize(user);
+                            countAddedUsers++;
+                            con.PostJSON("reg", json);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        if (con.Status == 1)
+                        {
+                            login = "";
+                        }
+                        else if (con.Status == 2)
+                        {
+                            email = "";
+                        }
+                        else if (con.Status == 3)
+                        {
+                            email = "";
+                            login = "";
+                        }
+                        var fm = new fmCorrectUserData(name, surname, email, password, login, idRole, this);
+                        var dialog = fm.ShowDialog();
+                    }
+                }
+                else
+                {
+                    int idRole = 0;
+                    int.TryParse(role, out idRole);
+                    var fm = new fmCorrectUserData(name, surname, email, password, login, idRole, this);
+                    var dialog = fm.ShowDialog();
+                }
+
+            }
+            MessageBox.Show("Из " + countUsers + " пользователей было добавлено " + countAddedUsers);
+            countAddedUsers = 0;
+        }
+
+        private void ImportFromCSV(string fileContent)
+        {
+            var countUsers = 0;
             fileContent.Replace("\r", "");
             var strArray = fileContent.Split('\n');
             if (strArray.Length > 1)
             {
                 var header = strArray[0].Split('/');
+                // Проверка csv заголовка
                 if (header.Length >= 4 && header[0] == "Имя" && header[1] == "Фамилия" && header[2] == "Email" && header[3] == "Пароль" && header[4] == "Логин" && header[5] == "Роль\r")
                 {
                     for (int i = 1; i < strArray.Length; i++)
@@ -344,22 +445,23 @@ namespace StudentTasks
                         {
                             var idRole = 0;
                             Int32.TryParse(curStr[5], out idRole);
+                            // Проверка полей на пустоту
                             if (curStr[1] != "" && curStr[2] != "" && curStr[3] != "" && curStr[4] != "")
                             {
                                 var con = new Connection();
+                                // Проверка уникальности логина и email на сервере
                                 con.GetJSON("check_email_login/" + curStr[4] + "/" + curStr[2]);
-                                if (con.Status == 0) 
+                                if (con.Status == 0)
                                 {
                                     try
                                     {
                                         var user = new UserToAdd(curStr[0], curStr[1], curStr[2], curStr[4], curStr[3], int.Parse(curStr[5]));
                                         string json = JsonSerializer.Serialize(user);
-                                        MessageBox.Show(json);
                                         countAddedUsers++;
                                         con.PostJSON("reg", json);
                                         MessageBox.Show(con.Status.ToString());
                                     }
-                                    catch(Exception ex)
+                                    catch (Exception ex)
                                     {
                                         MessageBox.Show(ex.Message);
                                     }
@@ -391,6 +493,7 @@ namespace StudentTasks
                         }
                     }
                     MessageBox.Show("Из " + countUsers + " пользователей было добавлено " + countAddedUsers);
+                    countAddedUsers = 0;
                 }
                 else
                     MessageBox.Show("Файл не соответствует формату");

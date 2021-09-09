@@ -17,13 +17,12 @@ namespace StudentTasks
     public partial class fmLogin : Form
     {
         List<DateTime> unSuccessLogins = new List<DateTime>();
-        int incorrectCapcha = 0;
-        int capchaUpdates = 0;
+        int incorrectCapcha = 1;
+        int capchaUpdates = 1;
         string text;
         public fmLogin()
         {
             InitializeComponent();
-            pictureBox1.Image = this.CreateImage(pictureBox1.Width, pictureBox1.Height);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -48,15 +47,15 @@ namespace StudentTasks
                     else if (loginRes == -1)
                     {
                         unSuccessLogins.Add(DateTime.Now);
-                        int count = 0;
+                        int count = 1;
                         foreach(var dt in unSuccessLogins)
                         {
                             if ((DateTime.Now - dt).TotalHours < 1)
                                 count++;
                         }
-                        if (count >= 5)
+                        if (count > 5)
                             MakeCapcha();
-                        MessageBox.Show("Неверный логин или пароль",
+                        MessageBox.Show("Неверный логин или пароль или учётная запись заблокирована",
                             "Проверьте заполнение полей", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else if (loginRes == -2)
@@ -115,7 +114,7 @@ namespace StudentTasks
             //Создадим изображение
             Bitmap result = new Bitmap(Width, Height);
 
-            //Вычислим позицию текста
+            //Зададим позицию текста
             int Xpos = rnd.Next(10);
             int Ypos = rnd.Next(10);
 
@@ -172,7 +171,7 @@ namespace StudentTasks
             //Укажем где рисовать
             Graphics g = Graphics.FromImage((Image)result);
 
-            //Пусть фон картинки будет серым
+            //Пусть фон картинки будет
             g.Clear(BgColor[rnd.Next(BgColor.Length)]);
 
             //Делаем случайный угол поворота текста
@@ -182,7 +181,7 @@ namespace StudentTasks
             text = "";
             text += rnd.Next(9);
             string ALF = "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm";
-            for (int i = 0; i < rnd.Next(5, 10); ++i)
+            for (int i = 0; i < rnd.Next(4, 9); ++i)
                 text += ALF[rnd.Next(ALF.Length)];
 
             //Нарисуем сгенирируемый текст
@@ -191,8 +190,7 @@ namespace StudentTasks
             colors[rnd.Next(colors.Length)],
             new PointF(Xpos, Ypos));
 
-            //Добавим немного помех
-            //Линии из углов
+            // Линии
             g.DrawLine(colorpens[rnd.Next(colorpens.Length)],
             new Point(0, rnd.Next(Height-1)),
             new Point(Width - 1, rnd.Next(Height - 1)));
@@ -214,8 +212,11 @@ namespace StudentTasks
 
         private void MakeCapcha()
         {
+            // Если поля логина и пароля заполнены и не выбран оффлайн режим работы 
+            // создаём капчу, блокируем все поля и кнопки на форме, делаем видимыми поля для отоброжения и ввода "капчи"
             if (txtUser.Text != "" && txtPass.Text != "" && !cbIsOffline.Checked)
             {
+                pictureBox1.Image = this.CreateImage(pictureBox1.Width, pictureBox1.Height);
                 txtUser.Enabled = false;
                 txtPass.Enabled = false;
                 cbIsOffline.Enabled = false;
@@ -224,14 +225,16 @@ namespace StudentTasks
                 buNewCapcha.Visible = true;
                 btnCheckCAPCHA.Visible = true;
                 btnLogin.Enabled = false;
+                btnReg.Enabled = false;
             }
             else
                 MessageBox.Show("Имя пользователя или пароль не могут быть пустыми",
                         "Проверьте заполнение полей", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
-
+        // Клик по кнопке обновить (капчу)
         private void buNewCapcha_Click(object sender, EventArgs e)
         {
+            // Если пользователь обновил капчу более 15 раз - блокируем его
             if (capchaUpdates >= 15)
             {
                 var con = new Connection();
@@ -239,15 +242,17 @@ namespace StudentTasks
                 MessageBox.Show("На Ваш email отправлено письмо для смены пароля", "Учётная запись заблокирована", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
             }
+            // Иначе, обновляем капчу и запоминаем вызов обновления
             else
             {
                 pictureBox1.Image = this.CreateImage(pictureBox1.Width, pictureBox1.Height);
                 capchaUpdates++;
             }
         }
-
+        // Клик по кнопке "Проверить" (капчу)
         private void btnCheckCAPCHA_Click(object sender, EventArgs e)
         {
+            // Если капча введена верна - скрываем её и разблокируем элементы управления
             if (txtCapcha.Text == text)
             {
                 txtUser.Enabled = true;
@@ -256,13 +261,20 @@ namespace StudentTasks
                 pictureBox1.Visible = false;
                 txtCapcha.Visible = false;
                 buNewCapcha.Visible = false;
+                btnCheckCAPCHA.Visible = false;
                 btnLogin.Enabled = true;
+                btnReg.Enabled = true;
             }
+            // Иначе сообщаем пользователю о некорректном вводе
             else
             {
                 MessageBox.Show("Капча введена неверно", "Капча введена неверно", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                capchaUpdates = 1;
+                pictureBox1.Image = this.CreateImage(pictureBox1.Width, pictureBox1.Height);
+                txtCapcha.Text = "";
                 incorrectCapcha++;
-                if (incorrectCapcha >= 7 || capchaUpdates >= 15)
+                // Если 
+                if (incorrectCapcha > 7)
                 {
                     var con = new Connection();
                     con.GetJSON("block/" + txtUser.Text);
@@ -270,6 +282,12 @@ namespace StudentTasks
                     this.Close();
                 }
             }
+        }
+
+        private void btnReg_Click(object sender, EventArgs e)
+        {
+            fmRegistration fm = new fmRegistration();
+            fm.ShowDialog();
         }
     }
 }

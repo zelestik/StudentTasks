@@ -39,6 +39,7 @@
             this.txtCapcha = new System.Windows.Forms.TextBox();
             this.buNewCapcha = new System.Windows.Forms.Button();
             this.btnCheckCAPCHA = new System.Windows.Forms.Button();
+            this.btnReg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,12 +176,26 @@
             this.btnCheckCAPCHA.Visible = false;
             this.btnCheckCAPCHA.Click += new System.EventHandler(this.btnCheckCAPCHA_Click);
             // 
+            // btnReg
+            // 
+            this.btnReg.BackColor = System.Drawing.Color.White;
+            this.btnReg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReg.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.btnReg.Location = new System.Drawing.Point(9, 221);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(315, 23);
+            this.btnReg.TabIndex = 11;
+            this.btnReg.Text = "Регистрация";
+            this.btnReg.UseVisualStyleBackColor = false;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
+            // 
             // fmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.DodgerBlue;
             this.ClientSize = new System.Drawing.Size(332, 493);
+            this.Controls.Add(this.btnReg);
             this.Controls.Add(this.btnCheckCAPCHA);
             this.Controls.Add(this.buNewCapcha);
             this.Controls.Add(this.txtCapcha);
@@ -219,6 +234,7 @@
         private System.Windows.Forms.TextBox txtCapcha;
         private System.Windows.Forms.Button buNewCapcha;
         private System.Windows.Forms.Button btnCheckCAPCHA;
+        private System.Windows.Forms.Button btnReg;
     }
 }
 
